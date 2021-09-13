@@ -26,7 +26,7 @@
                         class="form-control input-md"
                         data-pattern-error="<fmt:message key='data.non-valid'/>"
                         data-required-error="<fmt:message key='data.required'/>"
-                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}\s[0-9]{2}:[0-9]{2}$"
+                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}\s+[0-9]{2}:[0-9]{2}$"
                         value="<c:out value="${requestScope.movieSesEdit.showTime.year}"/>-<c:out value="${requestScope.movieSesEdit.showTime.month.ordinal()}"/>-<c:out value="${requestScope.movieSesEdit.showTime.dayOfMonth}"/> <c:out value="${requestScope.movieSesEdit.showTime.hour}"/>:<c:out value="${requestScope.movieSesEdit.showTime.minute}"/>"
                 >
             </div>

@@ -6,6 +6,7 @@ import com.my.cinema.booking.model.enums.Role;
 import java.util.Optional;
 
 public interface UserDao extends AutoCloseable {
+
     Optional<User> getById(Long id);
 
     boolean checkUser(String email, String password);

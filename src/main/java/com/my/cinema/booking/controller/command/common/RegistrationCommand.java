@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import static com.my.cinema.booking.controller.command.Path.*;
 
 public class RegistrationCommand extends Command {
+    private final Logger LOG = Logger.getLogger(RegistrationCommand.class);
     private static final String NAME_PARAMETER = "name";
     private static final String EMAIL_PARAMETER = "email";
     private static final String PASSWORD_PARAMETER = "password";
@@ -23,7 +24,7 @@ public class RegistrationCommand extends Command {
     private static final String BAD_EMAIL = "?badEmail=true";
     private static final String REG_AGAIN = "?successReg=true";
     private static final String REG_EXC = "?successReg=false";
-    private final Logger LOG = Logger.getLogger(RegistrationCommand.class);
+
     private UserService userService;
 
     public RegistrationCommand(UserService userService) {

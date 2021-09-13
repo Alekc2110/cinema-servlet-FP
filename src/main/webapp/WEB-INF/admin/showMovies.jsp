@@ -14,7 +14,7 @@
 
 <div id="wrapper">
     <header id="header">
-        <jsp:include page="/WEB-INF/parts/header_admin_account.jsp"/>
+        <jsp:include page="/WEB-INF/parts/header.jsp"/>
     </header>
 </div>
 

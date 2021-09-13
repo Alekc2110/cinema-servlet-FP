@@ -1,9 +1,11 @@
 package com.my.cinema.booking.dao;
 
 import com.my.cinema.booking.dao.impl.JDBCMovieDao;
+import com.my.cinema.booking.dao.impl.JDBCOrderDao;
 import com.my.cinema.booking.dao.impl.JDBCShoppingCartDao;
 import com.my.cinema.booking.dao.impl.JDBCUserDao;
 import com.my.cinema.booking.dao.interfaces.MovieDao;
+import com.my.cinema.booking.dao.interfaces.OrderDao;
 import com.my.cinema.booking.dao.interfaces.ShoppingCartDao;
 import com.my.cinema.booking.dao.interfaces.UserDao;
 import org.apache.log4j.Logger;
@@ -39,5 +41,10 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public MovieDao createMovieDao() {
         return new JDBCMovieDao(getConnection());
+    }
+
+    @Override
+    public OrderDao createOrderDao() {
+        return new JDBCOrderDao(getConnection());
     }
 }

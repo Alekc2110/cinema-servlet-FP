@@ -8362,6 +8362,8 @@ button.bg-dark:focus {
 
 .float-right {
     float: right !important;
+    top: 10px;
+    right: 10%;
 }
 
 .float-none {

@@ -26,7 +26,7 @@
             </div>
             <img class="card-img-bottom" src="<c:out value="${requestScope.movie.photoUrl}"/>" alt="movie image cap"
                  style="width:50%; position: center">
-            <a href="#" class="btn btn-primary">order ticket</a>
+            <a href="${pageContext.request.contextPath}/cinema/manageOrder?movieId=${requestScope.movie.id}" class="btn btn-primary">order ticket</a>
         </div>
     </header>
 </div>

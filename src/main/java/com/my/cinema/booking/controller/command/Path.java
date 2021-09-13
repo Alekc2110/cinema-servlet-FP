@@ -17,6 +17,7 @@ public interface Path {
     String PAGE_ADMIN_ADD_MOVIE_S = "/WEB-INF/admin/addMovieSession.jsp";
     String PAGE_ADMIN_MOVIE_SESSION = "/WEB-INF/admin/movieSession.jsp";
     String PAGE_ADMIN_EDIT_MOVIE_S = "/WEB-INF/admin/editMovieSes.jsp";
+    String PAGE_ORDER_MOVIE_S = "/WEB-INF/common/manageOrder.jsp";
     String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
 
     //commands
@@ -40,5 +41,6 @@ public interface Path {
     String ADMIN_EDIT_MOVIE_SESSION = "/editMovieSession";
     String ADMIN_DELETE_MOVIE_SESSION = "/deleteMovieSession";
     String ADMIN_ADD_MOVIE_SESSION = "/addMovieSession";
+    String MANAGE_ORDER = "/manageOrder";
     String FORBIDDEN = "/forbidden";
 }

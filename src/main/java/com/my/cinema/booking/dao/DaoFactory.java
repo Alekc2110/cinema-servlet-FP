@@ -1,6 +1,7 @@
 package com.my.cinema.booking.dao;
 
 import com.my.cinema.booking.dao.interfaces.MovieDao;
+import com.my.cinema.booking.dao.interfaces.OrderDao;
 import com.my.cinema.booking.dao.interfaces.ShoppingCartDao;
 import com.my.cinema.booking.dao.interfaces.UserDao;
 
@@ -11,6 +12,7 @@ public abstract class DaoFactory {
     public abstract UserDao createUserDao();
     public abstract ShoppingCartDao createShoppingCartDao();
     public abstract MovieDao createMovieDao();
+    public abstract OrderDao createOrderDao();
 
     public static DaoFactory getInstance() {
         if (daoFactory == null) {

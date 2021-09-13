@@ -4,6 +4,7 @@ import com.my.cinema.booking.controller.command.admin.*;
 import com.my.cinema.booking.controller.command.common.*;
 import com.my.cinema.booking.controller.command.user.UserAccountCommand;
 import com.my.cinema.booking.service.MovieService;
+import com.my.cinema.booking.service.OrderService;
 import com.my.cinema.booking.service.ShoppingCartService;
 import com.my.cinema.booking.service.UserService;
 import com.my.cinema.booking.utils.SimplePasswordEncoder;
@@ -40,6 +41,7 @@ public class CommandContainer {
         commands.put(ADMIN_EDIT_MOVIE_SESSION, new EditMovieSessionCommand(new MovieService()));
         commands.put(ADMIN_DELETE_MOVIE_SESSION, new DeleteMovieSessionCommand(new MovieService()));
         commands.put(ADMIN_ADD_MOVIE_SESSION, new AddMovieSessionCommand(new MovieService()));
+        commands.put(MANAGE_ORDER, new ManageOrderCommand(new MovieService(), new OrderService()));
 
     }
 

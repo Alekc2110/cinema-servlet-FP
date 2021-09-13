@@ -1,9 +1,11 @@
 package com.my.cinema.booking;
 
 import com.my.cinema.booking.model.entity.Movie;
+import com.my.cinema.booking.model.entity.Seat;
 import com.my.cinema.booking.model.entity.User;
 import com.my.cinema.booking.model.enums.Role;
 import com.my.cinema.booking.service.MovieService;
+import com.my.cinema.booking.service.OrderService;
 import com.my.cinema.booking.service.ShoppingCartService;
 import com.my.cinema.booking.service.UserService;
 import com.my.cinema.booking.utils.PasswordEncoder;
@@ -23,7 +25,7 @@ public class Main {
 //        }
 //        return sb.toString();
 //    }
-//   public static void main(String[] args) throws UnsupportedEncodingException {
+   public static void main(String[] args) throws UnsupportedEncodingException {
 //
 //
 //       SimplePasswordEncoder ps = new SimplePasswordEncoder();
@@ -38,6 +40,12 @@ public class Main {
 //       for (Movie m: allActiveMovies) {
 //           System.out.println(m);
 //       }
+
+       OrderService orderService = new OrderService();
+
+       List<Seat> allBookedSeats = orderService.getAllSeats();
+       System.out.println(allBookedSeats.size());
+       System.out.println(allBookedSeats);
 
 
 
@@ -59,5 +67,5 @@ public class Main {
 //
 //
 //
-//   }
+   }
 }

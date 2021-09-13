@@ -5,6 +5,7 @@ import com.my.cinema.booking.controller.command.Path;
 import com.my.cinema.booking.exceptions.EntitySaveDaoException;
 import com.my.cinema.booking.model.entity.MovieSession;
 import com.my.cinema.booking.service.MovieService;
+import com.my.cinema.booking.utils.Validator;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,6 @@ public class AddMovieSessionCommand extends Command {
     private final Logger LOG = Logger.getLogger(AddMovieSessionCommand.class);
     private static final String ADD_SUCCESS = "?successAdd=true";
     private static final String ADD_FALSE = "?successAdd=false";
-    private static final String MOVIE_ID = "?movieId=";
     private MovieService movieService;
 
     public AddMovieSessionCommand(MovieService movieService) {
@@ -35,28 +35,33 @@ public class AddMovieSessionCommand extends Command {
 
         if (request.getMethod().equals("GET")) {
             movieId = Long.parseLong(request.getParameter("movieId"));
-            LOG.info("parameter movieId: ***" + movieId);
+            LOG.info("parameter movieId: " + movieId);
             request.setAttribute("movieId", movieId);
             return Path.PAGE_ADMIN_ADD_MOVIE_S;
         } else {
+            HttpSession session = request.getSession();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             movieId =  Long.parseLong(request.getParameter("movieId"));
-            MovieSession newMovieSession = new MovieSession.Builder().
-                    setMovieId(movieId).
-                    setShowTime(LocalDateTime.parse(request.getParameter("show_time"), formatter)).
-                    setTicketPrice(Integer.parseInt(request.getParameter("price"))).
-                    build();
-            try {
-                Long savedMovieSesId = movieService.saveMovieSession(newMovieSession);
-                HttpSession session = request.getSession();
-                session.setAttribute("movieId", movieId);
-                LOG.info("saved new movie session with id: " + savedMovieSesId);
-            } catch (EntitySaveDaoException e) {
-                LOG.error("Exception when save new movie session: " + newMovieSession);
-                return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES;
+            String showTime = request.getParameter("show_time");
+            String price = request.getParameter("price");
+            if (Validator.isCorrectTimeStamp(showTime) && Validator.isCorrectPrice(price)) {
+                MovieSession newMovieSession = new MovieSession.Builder().
+                        setMovieId(movieId).
+                        setShowTime(LocalDateTime.parse(showTime, formatter)).
+                        setTicketPrice(Integer.parseInt(price)).
+                        build();
+                try {
+                    Long savedMovieSesId = movieService.saveMovieSession(newMovieSession);
+                    session.setAttribute("movieId", movieId);
+                    LOG.info("saved new movie session with id: " + savedMovieSesId);
+                } catch (EntitySaveDaoException e) {
+                    LOG.error("Exception when save new movie session: " + newMovieSession);
+                    return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES + ADD_FALSE;
+                }
+                return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES + ADD_SUCCESS;
             }
-
-            return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES;
+            session.setAttribute("movieId", movieId);
+            return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES + ADD_FALSE;
         }
 
     }

@@ -14,7 +14,7 @@
 
 <div id="wrapper">
     <header id="header">
-        <jsp:include page="/WEB-INF/parts/header_admin_account.jsp"/>
+        <jsp:include page="/WEB-INF/parts/header.jsp"/>
     </header>
 </div>
 
@@ -35,6 +35,14 @@
     <c:if test="${param.movieSesSuccessDel == false}">
         <p class="errorsM"><fmt:message key="delete.movie.session.false"/></p>
     </c:if>
+
+    <c:if test="${param.successAdd == true}">
+        <p class="alert-success"><fmt:message key="add.movie.session.successful"/></p>
+    </c:if>
+    <c:if test="${param.successAdd == false}">
+        <p class="errorsM"><fmt:message key="add.movie.session.false"/></p>
+    </c:if>
+
     <a href="${pageContext.request.contextPath}/cinema/addMovieSession?movieId=${requestScope.movieId}">
         <button type="button" class="btn btn-primary btn-lg btn-block"><fmt:message key="add.movie.session.button.add"/></button>
     </a>
@@ -56,7 +64,8 @@
                     <c:out value="${movieSession.showTime.month}"/>/
                     <c:out value="${movieSession.showTime.year}"/>
                 </td>
-                <td><c:out value="${movieSession.showTime.hour}"/>:
+                <td>
+                    <c:out value="${movieSession.showTime.hour}"/>:
                     <c:out value="${movieSession.showTime.minute}"/>
                 </td>
                 <td><c:out value="${movieSession.ticketPrice}"/></td>

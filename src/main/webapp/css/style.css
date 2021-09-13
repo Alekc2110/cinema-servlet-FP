@@ -133,9 +133,9 @@ footer {
     padding-bottom: 12px;
 }
 
-.container {
-    padding: 10px;
-}
+/*.container {*/
+/*    padding: 10px;*/
+/*}*/
 
 .viewData {
     height: 60px;
@@ -390,6 +390,13 @@ table {
     position: static;
     top: 17px;
     right: 15px;
+}
+
+.profile_block {
+    position: static;
+    float: right;
+    top: 15px;
+    right: 10px;
 }
 
 #lang li {
