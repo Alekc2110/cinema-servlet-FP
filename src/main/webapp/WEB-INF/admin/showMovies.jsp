@@ -41,15 +41,6 @@
     <c:if test="${param.successAdd == false}">
         <p class="errorsM"><fmt:message key="add.movie.false"/></p>
     </c:if>
-    <c:if test="${param.movSessionBadInput == true}">
-        <p class="errorsM"><fmt:message key="update.movie.session.bad.input"/></p>
-    </c:if>
-    <c:if test="${param.movSessionSuccessUpdate == true}">
-        <p class="alert-success"><fmt:message key="update.movie.session.successful"/></p>
-    </c:if>
-    <c:if test="${param.movSessionSuccessUpdate == false}">
-        <p class="errorsM"><fmt:message key="update.movie.session.false"/></p>
-    </c:if>
     <a href="${pageContext.request.contextPath}/cinema/addMovie">
     <button type="button" class="btn btn-primary btn-lg btn-block"><fmt:message key="add.movie.button.add"/></button>
     </a>
@@ -75,14 +66,11 @@
                 <td><c:out value="${movie.director}"/></td>
                 <td><c:out value="${movie.year}"/></td>
                 <td><c:out value="${movie.country}"/></td>
-                <td><a class="nav-link"
-                       href="${pageContext.request.contextPath}/cinema/manageMovieSession?movieId=${movie.id}">
+                <td><a href="${pageContext.request.contextPath}/cinema/manageMovieSession?movieId=${movie.id}">
                     <fmt:message key="nav.bar.movie.sessions"/></a></td>
-                <td><a class="nav-link"
-                       href="${pageContext.request.contextPath}/cinema/editMovie?movieId=${movie.id}"><fmt:message
+                <td><a href="${pageContext.request.contextPath}/cinema/editMovie?movieId=${movie.id}"><fmt:message
                         key="nav.bar.movie.edit"/></a></td>
-                <td><a class="nav-link"
-                       href="${pageContext.request.contextPath}/cinema/deleteMovie?movieId=${movie.id}"><fmt:message
+                <td><a href="${pageContext.request.contextPath}/cinema/deleteMovie?movieId=${movie.id}"><fmt:message
                         key="nav.bar.movie.delete"/></a></td>
             </tr>
         </c:forEach>

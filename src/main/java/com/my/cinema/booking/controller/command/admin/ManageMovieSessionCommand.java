@@ -14,7 +14,7 @@ public class ManageMovieSessionCommand extends Command {
     private final Logger LOG = Logger.getLogger(ManageMovieSessionCommand.class);
     private MovieService movieService;
     private static final String MOVIE_S_LIST_ATTRIBUTE = "moviesSesList";
-    private static final String MOVIE_ID = "movie_id";
+    private static final String MOVIE_ID = "movieId";
 
     public ManageMovieSessionCommand(MovieService movieService) {
         this.movieService = movieService;
@@ -23,11 +23,24 @@ public class ManageMovieSessionCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.info("showing movie sessions list for admin");
-        Long movieId = Long.parseLong(request.getParameter("movieId"));
-        List<MovieSession> movieSesList = movieService.findMovieSesByMovieId(movieId);
+        Long movieId = null;
+        String movieIdStr = request.getParameter("movieId");
 
-        request.setAttribute(MOVIE_S_LIST_ATTRIBUTE, movieSesList);
-        request.setAttribute(MOVIE_ID, movieId);
+        if (movieIdStr != null && !movieIdStr.isEmpty()) {
+            movieId = Long.parseLong(movieIdStr);
+            List<MovieSession> movieSesList = movieService.findMovieSesByMovieId(movieId);
+            request.setAttribute(MOVIE_S_LIST_ATTRIBUTE, movieSesList);
+            request.setAttribute(MOVIE_ID, movieId);
+        } else {
+            Object movieIdObj = request.getSession().getAttribute("movieId");
+            if (movieIdObj != null) {
+                movieIdStr = String.valueOf(movieIdObj);
+                movieId = Long.valueOf(movieIdStr);
+                List<MovieSession> movieSesList = movieService.findMovieSesByMovieId(movieId);
+                request.setAttribute(MOVIE_S_LIST_ATTRIBUTE, movieSesList);
+                request.setAttribute(MOVIE_ID, movieId);
+            }
+        }
         return Path.PAGE_ADMIN_MOVIE_SESSION;
     }
 }

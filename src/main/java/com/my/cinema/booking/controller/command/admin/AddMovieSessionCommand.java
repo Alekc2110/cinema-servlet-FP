@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +20,7 @@ public class AddMovieSessionCommand extends Command {
     private final Logger LOG = Logger.getLogger(AddMovieSessionCommand.class);
     private static final String ADD_SUCCESS = "?successAdd=true";
     private static final String ADD_FALSE = "?successAdd=false";
+    private static final String MOVIE_ID = "?movieId=";
     private MovieService movieService;
 
     public AddMovieSessionCommand(MovieService movieService) {
@@ -27,28 +29,34 @@ public class AddMovieSessionCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        Long movieId = null;
         LOG.info("starts command add new movie session");
-        Long movieId = Long.valueOf(request.getParameter("movie_id"));
-        request.setAttribute("movie_id", movieId);
+        String contextAndServletPath = request.getContextPath() + request.getServletPath();
+
         if (request.getMethod().equals("GET")) {
+            movieId = Long.parseLong(request.getParameter("movieId"));
+            LOG.info("parameter movieId: ***" + movieId);
+            request.setAttribute("movieId", movieId);
             return Path.PAGE_ADMIN_ADD_MOVIE_S;
         } else {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            movieId =  Long.parseLong(request.getParameter("movieId"));
             MovieSession newMovieSession = new MovieSession.Builder().
-                    setMovieId(Long.parseLong(request.getParameter("movie_id"))).
+                    setMovieId(movieId).
                     setShowTime(LocalDateTime.parse(request.getParameter("show_time"), formatter)).
                     setTicketPrice(Integer.parseInt(request.getParameter("price"))).
                     build();
             try {
                 Long savedMovieSesId = movieService.saveMovieSession(newMovieSession);
-                request.setAttribute("savedMovieSesId", savedMovieSesId);
+                HttpSession session = request.getSession();
+                session.setAttribute("movieId", movieId);
                 LOG.info("saved new movie session with id: " + savedMovieSesId);
             } catch (EntitySaveDaoException e) {
                 LOG.error("Exception when save new movie session: " + newMovieSession);
-                return PAGE_ADMIN_MOVIE_SESSION;
+                return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES;
             }
 
-            return PAGE_ADMIN_MOVIE_SESSION;
+            return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES;
         }
 
     }

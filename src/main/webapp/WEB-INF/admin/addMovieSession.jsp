@@ -11,7 +11,7 @@
 <jsp:include page="/WEB-INF/parts/head_tag.jsp"/>
 
 <form id="form-edit-icon" class="form-horizontal" method="POST"
-      action="${pageContext.request.contextPath}/cinema/addMovieSession?movie_id=${requestScope.movie_id}">
+      action="${pageContext.request.contextPath}/cinema/addMovieSession?movieId=${requestScope.movieId}">
     <fieldset>
         <!-- Form Name -->
         <legend><fmt:message key="add.movie.session.table.title"/></legend>

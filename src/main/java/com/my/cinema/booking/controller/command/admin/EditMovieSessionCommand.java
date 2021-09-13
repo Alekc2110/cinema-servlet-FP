@@ -55,16 +55,17 @@ public class EditMovieSessionCommand extends Command {
                         setTicketPrice(Integer.parseInt(request.getParameter("price"))).
                         build();
                 edited.setId(movieSesById.getId());
+                request.getSession().setAttribute("movieId", movieSesById.getMovieId());
                 boolean updated = movieService.updateMovieSession(edited);
                 LOG.info("returned boolean updated: " + updated);
                 if (updated) {
-                    return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES  + UPDATE_SUCCESS;
+                    return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES  + UPDATE_SUCCESS;
                 }
             } catch (EntityNotFoundException e) {
                 LOG.error("could not find movie session with Id: " + movSesId);
-                return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES + BAD_INPUT;
+                return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES + BAD_INPUT;
             }
         }
-        return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIES + UPDATE_FALSE;
+        return REDIRECT + contextAndServletPath + ADMIN_MANAGE_MOVIE_SES + UPDATE_FALSE;
     }
 }

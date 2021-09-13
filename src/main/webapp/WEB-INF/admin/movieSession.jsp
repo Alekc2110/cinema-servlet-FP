@@ -19,8 +19,23 @@
 </div>
 
 <div class="container">
-    
-    <a href="${pageContext.request.contextPath}/cinema/addMovieSession?movie_id=${requestScope.movie_id}">
+    <c:if test="${param.movSessionBadInput == true}">
+        <p class="errorsM"><fmt:message key="update.movie.session.bad.input"/></p>
+    </c:if>
+    <c:if test="${param.movSessionSuccessUpdate == true}">
+        <p class="alert-success"><fmt:message key="update.movie.session.successful"/></p>
+    </c:if>
+    <c:if test="${param.movSessionSuccessUpdate == false}">
+        <p class="errorsM"><fmt:message key="update.movie.session.false"/></p>
+    </c:if>
+
+    <c:if test="${param.movieSesSuccessDel == true}">
+        <p class="alert-success"><fmt:message key="delete.movie.session.successful"/></p>
+    </c:if>
+    <c:if test="${param.movieSesSuccessDel == false}">
+        <p class="errorsM"><fmt:message key="delete.movie.session.false"/></p>
+    </c:if>
+    <a href="${pageContext.request.contextPath}/cinema/addMovieSession?movieId=${requestScope.movieId}">
         <button type="button" class="btn btn-primary btn-lg btn-block"><fmt:message key="add.movie.session.button.add"/></button>
     </a>
     <table id="movie_sessions" class="table table-bordered table-sm">
