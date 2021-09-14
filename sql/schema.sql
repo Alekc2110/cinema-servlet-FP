@@ -21,16 +21,6 @@ DROP SCHEMA IF EXISTS `cinema_bs` ;
 CREATE SCHEMA IF NOT EXISTS `cinema_bs` DEFAULT CHARACTER SET utf8 ;
 USE `cinema_bs` ;
 
--- -----------------------------------------------------
--- Table `cinema_bs`.`hall`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cinema_bs`.`hall` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `capacity` INT NOT NULL,
-  `description` VARCHAR(512) NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `cinema_bs`.`movie`

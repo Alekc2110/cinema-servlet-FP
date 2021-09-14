@@ -10,15 +10,7 @@ public class MovieSession extends Entity {
     private Long movieId;
     private LocalDateTime showTime;
     private int ticketPrice;
-    private List<Seat> bookedSeats;
 
-    public List<Seat> getBookedSeats() {
-        return bookedSeats;
-    }
-
-    public void setBookedSeats(List<Seat> bookedSeats) {
-        this.bookedSeats = bookedSeats;
-    }
 
     public Long getMovieId() {
         return movieId;

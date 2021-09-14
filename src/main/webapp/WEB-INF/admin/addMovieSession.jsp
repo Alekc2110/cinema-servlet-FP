@@ -25,7 +25,7 @@
                         name="show_time"
                         type="text"
                         class="form-control input-md"
-                        required=""
+                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}\s+[0-9]{2}:[0-9]{2}$"
                 >
             </div>
         </div>
@@ -39,7 +39,7 @@
                         name="price"
                         type="text"
                         class="form-control input-md"
-                        required=""
+                        required pattern="^[0-9]{1,3}$"
                 />
             </div>
         </div>

@@ -18,7 +18,8 @@ public interface Path {
     String PAGE_ADMIN_MOVIE_SESSION = "/WEB-INF/admin/movieSession.jsp";
     String PAGE_ADMIN_EDIT_MOVIE_S = "/WEB-INF/admin/editMovieSes.jsp";
     String PAGE_ORDER_MOVIE_S = "/WEB-INF/common/manageOrder.jsp";
-    String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
+    String PAGE_ORDER_TICKETS = "/WEB-INF/common/orderTickets.jsp";
+//    String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
 
     //commands
     String HOME = "/homePage";
@@ -42,5 +43,6 @@ public interface Path {
     String ADMIN_DELETE_MOVIE_SESSION = "/deleteMovieSession";
     String ADMIN_ADD_MOVIE_SESSION = "/addMovieSession";
     String MANAGE_ORDER = "/manageOrder";
+    String ORDER_TICKETS = "/orderTickets";
     String FORBIDDEN = "/forbidden";
 }

@@ -1,5 +1,3 @@
-INSERT INTO `hall` VALUES (1,'50','Multiplex movie theater');
-
 INSERT INTO `row` VALUES (1),
                          (2),
                          (3),
