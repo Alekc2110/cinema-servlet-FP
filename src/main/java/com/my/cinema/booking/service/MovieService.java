@@ -50,7 +50,7 @@ public class MovieService {
     }
     public Long saveMovie(Movie movie){
         try (MovieDao dao = factory.createMovieDao()) {
-            LOG.debug("save new movie in db");
+            LOG.debug("save new movie in db: " + movie);
             Optional<Long> savedMovieOpt = dao.saveMovie(movie);
             return savedMovieOpt.orElseThrow(EntitySaveDaoException::new);
         }

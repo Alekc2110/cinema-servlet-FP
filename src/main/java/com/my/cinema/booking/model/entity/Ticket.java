@@ -1,19 +1,19 @@
 package com.my.cinema.booking.model.entity;
 
-public class Ticket extends Entity {
+import java.util.Objects;
 
-    private User user;
+public class Ticket extends Entity {
+    private Long orderId;
     private MovieSession movieSession;
     private Row row;
     private Seat seat;
 
-
-    public User getUser() {
-        return user;
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public MovieSession getMovieSession() {
@@ -42,14 +42,14 @@ public class Ticket extends Entity {
 
     public static class Builder {
 
-        private User user;
+        private Long orderId;
         private MovieSession movieSession;
         private Row row;
         private Seat seat;
 
 
-        public Builder setUser(User user) {
-            this.user = user;
+        public Builder setOrderId(Long orderId) {
+            this.orderId = orderId;
             return this;
         }
         public Builder setMovieSession(MovieSession movieSession) {
@@ -67,7 +67,7 @@ public class Ticket extends Entity {
 
         public Ticket build() {
             Ticket ticket = new Ticket();
-            ticket.user = this.user;
+            ticket.orderId = this.orderId;
             ticket.movieSession = this.movieSession;
             ticket.row = this.row;
             ticket.seat = this.seat;
@@ -79,10 +79,25 @@ public class Ticket extends Entity {
     @Override
     public String toString() {
         return "Ticket{" +
-                "user=" + user +
+                "orderId=" + orderId +
                 ", movieSession=" + movieSession +
                 ", row=" + row +
                 ", seat=" + seat +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return Objects.equals(movieSession, ticket.movieSession) &&
+                Objects.equals(row, ticket.row) &&
+                Objects.equals(seat, ticket.seat);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movieSession, row, seat);
     }
 }

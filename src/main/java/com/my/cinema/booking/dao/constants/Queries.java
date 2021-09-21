@@ -8,8 +8,14 @@ public final class Queries {
     public static final String SAVE_USER_ROLE = "INSERT INTO `user_role` (user_id, role_id)  VALUES (?,?)";
     public static final String GET_BY_EMAIL_PASSWORD = "SELECT * FROM `user` u JOIN `user_role` u_r ON u.id = u_r.user_id JOIN `role` r ON u_r.role_id = r.id WHERE u.email =? AND u.password = ?";
 
-    //ShoppingCartDao
-    public static final String SAVE_SHOPPING_CART = "INSERT INTO `shopping_cart` (user_id) VALUE (?)";
+
+    //TicketDao
+    public static final String SAVE_TICKET = "INSERT INTO `ticket` (movie_session_id, row_id, seat_id, order_id) VALUES (?,?,?,?)";
+    public static final String GET_TICKETS = "SELECT * FROM `ticket` t JOIN `movie_session` ms ON t.movie_session_id = ms.id JOIN `row` r ON t.row_id = r.id JOIN `seat` s ON t.seat_id = s.id WHERE t.movie_session_id = ?";
+
+//    //ShoppingCartDao
+//    public static final String SAVE_SHOPPING_CART = "INSERT INTO `shopping_cart` (user_id) VALUE (?)";
+//    public static final String GET_SHOPPING_CART = "SELECT * FROM `shopping_cart` where user_id = ?";
 
     //MovieDao
     public static final String GET_ALL_MOVIES = "SELECT * FROM `movie`";
@@ -26,5 +32,10 @@ public final class Queries {
     //OrderDao
     public static final String GET_BOOKED_SEATS = "SELECT * FROM `movie_session_booked_seats` ms JOIN `seat` s ON ms.seat_id = s.id WHERE ms.movie_session_id = ?";
     public static final String GET_ALL_SEATS = "SELECT * FROM `seat`";
-
+    public static final String GET_SEAT_BY_ID = "SELECT * FROM `seat` where id = ?";
+    public static final String GET_ROW_BY_ID = "SELECT * FROM `row` where id = ?";
+    public static final String SAVE_ORDER = "INSERT INTO `order` (order_time, user_id, order_price, status) VALUES (?,?,?,?)";
+    public static final String UPDATE_ORDER_BY_ID = "UPDATE `order` SET order_time=?, user_id=?, order_price=?, status=? WHERE id=?";
+    public static final String SAVE_BOOKED_SEATS = "INSERT INTO `movie_session_booked_seats` (movie_session_id, seat_id) VALUES (?,?)";
+    public static final String DELETE_ORDER_BY_ID = "DELETE FROM `order` WHERE id = ?";
 }

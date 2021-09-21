@@ -5,13 +5,16 @@ import com.my.cinema.booking.controller.command.Path;
 import com.my.cinema.booking.model.entity.Movie;
 import com.my.cinema.booking.model.entity.MovieSession;
 import com.my.cinema.booking.model.entity.Seat;
+import com.my.cinema.booking.model.enums.Status;
 import com.my.cinema.booking.service.MovieService;
 import com.my.cinema.booking.service.OrderService;
 import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class OrderTicketsCommand extends Command {
@@ -35,6 +38,11 @@ public class OrderTicketsCommand extends Command {
         MovieSession movieSessionById = movieService.findMovieSessionById(movieSesId);
         Movie movieById = movieService.findMovieById(movieSessionById.getMovieId());
         List<Seat> allSeats = orderService.getAllSeats();
+        List<Seat> allBookedSeats = orderService.findAllBookedSeats(movieSesId);
+
+        allSeats.forEach(seat -> seat.setStatus(Status.FREE));
+        allSeats.stream().filter(allBookedSeats::contains).forEach(seat -> seat.setStatus(Status.BOOKED));
+
         request.setAttribute(ALL_SEATS_LIST_ATTR, allSeats);
         request.setAttribute(MOVIE_ATTR, movieById);
         request.setAttribute(MOVIE_SESSION_ATTR, movieSessionById);

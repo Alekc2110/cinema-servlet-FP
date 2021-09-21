@@ -1,23 +1,36 @@
 package com.my.cinema.booking.model.entity;
 
+import com.my.cinema.booking.model.enums.Status;
+
+import java.util.Objects;
+
 public class Seat extends Entity {
 
-    private int rowId;
+    private Long rowId;
     private int number;
+    private Status status;
 
     public Seat() {
     }
 
-    public Seat(int rowId, int number) {
+    public Seat(Long rowId, int number) {
         this.rowId = rowId;
         this.number = number;
     }
 
-    public int getRowId() {
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Long getRowId() {
         return rowId;
     }
 
-    public void setRowId(int rowId) {
+    public void setRowId(Long rowId) {
         this.rowId = rowId;
     }
 
@@ -34,6 +47,21 @@ public class Seat extends Entity {
         return "Seat{" +
                 "rowId=" + rowId +
                 ", number=" + number +
+                ", status=" + status +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Seat seat = (Seat) o;
+        return rowId.equals(seat.rowId) &&
+                number == seat.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rowId, number);
     }
 }

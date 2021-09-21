@@ -1,18 +1,15 @@
 package com.my.cinema.booking.dao;
 
-import com.my.cinema.booking.dao.interfaces.MovieDao;
-import com.my.cinema.booking.dao.interfaces.OrderDao;
-import com.my.cinema.booking.dao.interfaces.ShoppingCartDao;
-import com.my.cinema.booking.dao.interfaces.UserDao;
+import com.my.cinema.booking.dao.interfaces.*;
 
 public abstract class DaoFactory {
 
     private static DaoFactory daoFactory;
 
     public abstract UserDao createUserDao();
-    public abstract ShoppingCartDao createShoppingCartDao();
     public abstract MovieDao createMovieDao();
     public abstract OrderDao createOrderDao();
+    public abstract TicketDao createTicketDao();
 
     public static DaoFactory getInstance() {
         if (daoFactory == null) {

@@ -31,11 +31,12 @@
                                     <img class="card-img-top" src="<c:out value="${movie.photoUrl}"/>"
                                          alt="Movie image" style="width:100%">
                                     <div class="card-body">
-<%--                                        <a ${requestScope.put("movie",movie)} href="movieInfo.jsp">See Details</a>--%>
-                                     <a href="${pageContext.request.contextPath}/cinema/movieDetail?id=${movie.id}"  class="btn btn-primary">See Details</a>
+                                     <a href="${pageContext.request.contextPath}/cinema/movieDetail?id=${movie.id}"  class="btn btn-primary"><fmt:message key="show.movie.details"/></a>
                                     </div>
                                 </div>
+                                <hr>
                                 </c:forEach>
+
                             </div>
                         </div>
                     </div>

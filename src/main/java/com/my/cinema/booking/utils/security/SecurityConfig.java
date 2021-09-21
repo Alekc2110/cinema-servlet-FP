@@ -16,6 +16,9 @@ public class SecurityConfig {
     private static void init() {
         List<String> urlUserPatterns = new ArrayList<>();
         urlUserPatterns.add(USER_ACCOUNT);
+        urlUserPatterns.add(ADD_ORDER);
+        urlUserPatterns.add(CONFIRM_ORDER);
+        urlUserPatterns.add(CANCEL_ORDER);
         urlUserPatterns.add(LOGOUT);
 
         mapConfig.put(Role.USER, urlUserPatterns);
@@ -30,6 +33,9 @@ public class SecurityConfig {
         urlAdminPatterns.add(ADMIN_EDIT_MOVIE_SESSION);
         urlAdminPatterns.add(ADMIN_DELETE_MOVIE_SESSION);
         urlAdminPatterns.add(ADMIN_ADD_MOVIE_SESSION);
+        urlAdminPatterns.add(ADD_ORDER);
+        urlAdminPatterns.add(CONFIRM_ORDER);
+        urlAdminPatterns.add(CANCEL_ORDER);
         urlAdminPatterns.add(LOGOUT);
 
         mapConfig.put(Role.ADMIN, urlAdminPatterns);

@@ -9,7 +9,7 @@ public class SeatMapper implements Mapper<Seat> {
     @Override
     public Seat getEntity(ResultSet resultSet) throws SQLException {
         Seat seat = new Seat();
-        seat.setRowId(resultSet.getInt("row_id"));
+        seat.setRowId(resultSet.getLong("row_id"));
         seat.setNumber(resultSet.getInt("number"));
         seat.setId(resultSet.getLong("id"));
        return seat;

@@ -44,7 +44,7 @@ public class JDBCMovieDao implements MovieDao {
             try {
                 connection.rollback();
             } catch (SQLException ex) {
-                System.out.println("Exception when trying to rollback:" + ex.getMessage());
+                LOG.error("Exception when trying to rollback:" + ex.getMessage());
             }
             return allMovies;
         } finally {
@@ -70,7 +70,7 @@ public class JDBCMovieDao implements MovieDao {
             }
             return Optional.ofNullable(movie);
         } catch (SQLException e) {
-            LOG.error("SQLException in 'getMovieSessionsByMovie' in JdbcMovieDao", e);
+            LOG.error("SQLException in 'getMovieByMovieId' in JdbcMovieDao", e);
             return Optional.empty();
         }
     }
@@ -84,7 +84,7 @@ public class JDBCMovieDao implements MovieDao {
                 return false;
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in deleteMovie MovieDao: " + e);
+            LOG.error("SQLException in deleteMovie MovieDao: " + e);
             return false;
         }
         return true;
@@ -104,7 +104,7 @@ public class JDBCMovieDao implements MovieDao {
                 return false;
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in updateMovie MovieDao: " + e);
+            LOG.error("SQLException in updateMovie MovieDao: " + e);
             return false;
         }
         return true;
@@ -129,13 +129,13 @@ public class JDBCMovieDao implements MovieDao {
                 return Optional.of(id);
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in 'saveMovie' JDBCMovieDao: " + e);
+            LOG.error("SQLException in 'saveMovie' JDBCMovieDao: " + e);
             return Optional.empty();
         } finally {
             try {
                 if (generatedKey != null) generatedKey.close();
             } catch (SQLException e) {
-                LOG.info("SQLException when closing ResultSet in 'saveMovie': " + e);
+                LOG.error("SQLException when closing ResultSet in 'saveMovie': " + e);
             }
         }
         return Optional.empty();
@@ -171,7 +171,7 @@ public class JDBCMovieDao implements MovieDao {
                 return false;
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in updateMovieSession MovieDao: " + e);
+            LOG.error("SQLException in updateMovieSession MovieDao: " + e);
             return false;
         }
         return true;
@@ -185,7 +185,7 @@ public class JDBCMovieDao implements MovieDao {
                 return false;
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in deleteMovieSession MovieDao: " + e);
+            LOG.error("SQLException in deleteMovieSession MovieDao: " + e);
             return false;
         }
         return true;
@@ -207,13 +207,13 @@ public class JDBCMovieDao implements MovieDao {
                 return Optional.of(id);
             }
         } catch (SQLException e) {
-            LOG.info("SQLException in 'saveMovieSession' JDBCMovieDao: " + e);
+            LOG.error("SQLException in 'saveMovieSession' JDBCMovieDao: " + e);
             return Optional.empty();
         } finally {
             try {
                 if (generatedKey != null) generatedKey.close();
             } catch (SQLException e) {
-                LOG.info("SQLException when closing ResultSet in 'saveMovieSession': " + e);
+                LOG.error("SQLException when closing ResultSet in 'saveMovieSession': " + e);
             }
         }
         return Optional.empty();

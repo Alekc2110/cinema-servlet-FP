@@ -1,17 +1,45 @@
 package com.my.cinema.booking.model.entity;
 
+import com.my.cinema.booking.model.enums.Status;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 
 public class Order extends Entity {
 
-    private List<Ticket> ticketList;
     private LocalDateTime orderTime;
+    private Long userId;
+    private int orderPrice;
+    private Status orderStatus;
+    private List<Ticket> ticketList;
 
-    public Order(List<Ticket> ticketList, LocalDateTime orderTime) {
-        this.ticketList = ticketList;
-        this.orderTime = orderTime;
+    public Order() {
+
+    }
+
+    public Status getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(Status orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public int getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public List<Ticket> getTicketList() {
@@ -33,8 +61,11 @@ public class Order extends Entity {
     @Override
     public String toString() {
         return "Order{" +
-                "ticketList=" + ticketList +
-                ", orderTime=" + orderTime +
+                "orderTime=" + orderTime +
+                ", userId=" + userId +
+                ", orderPrice=" + orderPrice +
+                ", orderStatus=" + orderStatus +
+                ", ticketList=" + ticketList +
                 '}';
     }
 }

@@ -1,7 +1,6 @@
 package com.my.cinema.booking.dao.interfaces;
 
 import com.my.cinema.booking.model.entity.User;
-import com.my.cinema.booking.model.enums.Role;
 
 import java.util.Optional;
 

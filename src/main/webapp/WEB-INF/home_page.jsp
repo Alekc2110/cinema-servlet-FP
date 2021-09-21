@@ -17,7 +17,7 @@
             <ul id="main_slider">
                 <li>
                     <img src="${pageContext.request.contextPath}/img/multiplex_main.jpg" class="desktop-slide" width="1680"
-                         height="1050" alt="main picture">
+                         height="1050" alt="main_picture">
                 </li>
             </ul>
         </section>

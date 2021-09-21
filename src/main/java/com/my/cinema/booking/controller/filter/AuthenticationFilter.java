@@ -49,8 +49,13 @@ public class AuthenticationFilter implements Filter {
                 LOG.info("person has access to this page");
                 chain.doFilter(request, response);
             } else {
+                if (ADD_ORDER.equals(pathInfo)) {
+                    LOG.info("redirect to login");
+                    httpResponse.sendRedirect(contextAndServletPath + LOGIN);
+                } else {
                     LOG.info("redirect to 403");
                     httpResponse.sendRedirect(contextAndServletPath + FORBIDDEN);
+                }
             }
         } else {
             LOG.info("page is not secure, doFilter");

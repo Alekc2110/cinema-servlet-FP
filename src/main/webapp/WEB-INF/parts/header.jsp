@@ -34,7 +34,7 @@
                 <li>
                     <a href="?locale=ru">ru</a>
                 </li>
-                <li class="lang-item lang-item-5">
+                <li>
                     <a href="?locale=en">en</a>
                 </li>
             </ul>

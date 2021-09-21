@@ -17,14 +17,18 @@
     </header>
 </div>
 
-<section class="slider_home">
-    <ul id="main_slider">
-        <li>
-            <img src="${pageContext.request.contextPath}/img/multiplex_main.jpg" class="desktop-slide" width="1680"
-                 height="1050" alt="main picture">
-        </li>
-    </ul>
-</section>
+<div class="card bg-dark text-white">
+    <img src="${pageContext.request.contextPath}/img/multiplex_main.jpg" width="1680"  height="1050" alt="main picture">
+    <div class="card-img-overlay justify-content-end" >
+        <img src="${pageContext.request.contextPath}/img/client-image.jpg"  width="120px" height="120px" alt="user_icon">
+        <h5 style="color: #ffffff" class="card-title"><fmt:message key="user.account.role"/><c:out value="${sessionScope.loginedUser.role}"/></h5>
+        <br/>
+        <h5 style="color: #ffffff" class="card-title"><fmt:message key="user.account.name"/><c:out value="${sessionScope.loginedUser.name}"/></h5>
+        <br/>
+        <h5 style="color: #ffffff" class="card-title"><fmt:message key="user.account.email"/><c:out value="${sessionScope.loginedUser.email}"/></h5>
+    </div>
+</div>
+
 
 <jsp:include page="/WEB-INF/parts/footer.jsp"/>
 </body>

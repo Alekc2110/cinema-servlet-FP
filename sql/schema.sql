@@ -67,27 +67,28 @@ CREATE TABLE IF NOT EXISTS `cinema_bs`.`user` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `cinema_bs`.`shopping_cart`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cinema_bs`.`shopping_cart` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_scart_user_id_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_scart_user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `cinema_bs`.`user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
+-- -- -----------------------------------------------------
+-- -- Table `cinema_bs`.`shopping_cart`
+-- -- -----------------------------------------------------
+-- CREATE TABLE IF NOT EXISTS `cinema_bs`.`shopping_cart` (
+--   `id` INT NOT NULL AUTO_INCREMENT,
+--   `user_id` INT NOT NULL,
+--   PRIMARY KEY (`id`),
+--   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
+--   INDEX `fk_scart_user_id_idx` (`user_id` ASC) VISIBLE,
+--   CONSTRAINT `fk_scart_user_id`
+--     FOREIGN KEY (`user_id`)
+--     REFERENCES `cinema_bs`.`user` (`id`)
+--     ON DELETE CASCADE
+--     ON UPDATE CASCADE)
+-- ENGINE = InnoDB;
 
--- -----------------------------------------------------
+--- -----------------------------------------------------
 -- Table `cinema_bs`.`row`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cinema_bs`.`row` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `number` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -115,12 +116,14 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cinema_bs`.`order` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `order_time` DATETIME NOT NULL,
-  `shopping_cart_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `order_price` INT NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_scart_id_idx` (`shopping_cart_id` ASC) VISIBLE,
-  CONSTRAINT `fk_shopping_cart_id`
-    FOREIGN KEY (`shopping_cart_id`)
-    REFERENCES `cinema_bs`.`shopping_cart` (`id`)
+  INDEX `fk_user_id_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `cinema_bs`.`user` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -131,37 +134,30 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cinema_bs`.`ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
   `movie_session_id` INT NOT NULL,
   `row_id` INT NOT NULL,
   `seat_id` INT NOT NULL,
   `order_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_id_user_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_movie_session_idx` (`movie_session_id` ASC) VISIBLE,
   INDEX `fk_row_id_idx` (`row_id` ASC) VISIBLE,
   INDEX `fk_seat_id_idx` (`seat_id` ASC) VISIBLE,
   INDEX `fk_order_id_idx` (`order_id` ASC) VISIBLE,
-  CONSTRAINT `fk_user_id`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `cinema_bs`.`user` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
   CONSTRAINT `fk_movie_session`
     FOREIGN KEY (`movie_session_id`)
     REFERENCES `cinema_bs`.`movie_session` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_row_id`
     FOREIGN KEY (`row_id`)
     REFERENCES `cinema_bs`.`row` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_seat_id`
     FOREIGN KEY (`seat_id`)
     REFERENCES `cinema_bs`.`seat` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_order_id`
     FOREIGN KEY (`order_id`)
     REFERENCES `cinema_bs`.`order` (`id`)

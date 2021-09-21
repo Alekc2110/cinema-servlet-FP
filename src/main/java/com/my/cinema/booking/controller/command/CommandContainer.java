@@ -2,10 +2,13 @@ package com.my.cinema.booking.controller.command;
 
 import com.my.cinema.booking.controller.command.admin.*;
 import com.my.cinema.booking.controller.command.common.*;
+import com.my.cinema.booking.controller.command.user.AddOrderCommand;
+import com.my.cinema.booking.controller.command.user.CancelOrderCommand;
+import com.my.cinema.booking.controller.command.user.ConfirmOrderCommand;
 import com.my.cinema.booking.controller.command.user.UserAccountCommand;
 import com.my.cinema.booking.service.MovieService;
 import com.my.cinema.booking.service.OrderService;
-import com.my.cinema.booking.service.ShoppingCartService;
+import com.my.cinema.booking.service.TicketService;
 import com.my.cinema.booking.service.UserService;
 import com.my.cinema.booking.utils.SimplePasswordEncoder;
 import org.apache.log4j.Logger;
@@ -28,9 +31,9 @@ public class CommandContainer {
         commands.put(USER_ACCOUNT, new UserAccountCommand());
         commands.put(LOGIN, new LoginCommand());
         commands.put(LOGOUT, new LogOutCommand());
-        commands.put(ENTER_LOGIN, new EnterLoginCommand(new UserService(new SimplePasswordEncoder(), new ShoppingCartService())));
+        commands.put(ENTER_LOGIN, new EnterLoginCommand(new UserService(new SimplePasswordEncoder())));
         commands.put(REGISTER_USER, new RegisterUserCommand());
-        commands.put(REGISTER, new RegistrationCommand(new UserService(new SimplePasswordEncoder(), new ShoppingCartService())));
+        commands.put(REGISTER, new RegistrationCommand(new UserService(new SimplePasswordEncoder())));
         commands.put(SHOW_ALL_MOVIES, new ShowMoviesCommand(new MovieService()));
         commands.put(SHOW_MOVIE_DETAIL, new ShowMovieDetailCommand(new MovieService()));
         commands.put(ADMIN_MANAGE_MOVIES, new ManageMoviesCommand(new MovieService()));
@@ -43,6 +46,9 @@ public class CommandContainer {
         commands.put(ADMIN_ADD_MOVIE_SESSION, new AddMovieSessionCommand(new MovieService()));
         commands.put(MANAGE_ORDER, new ManageOrderCommand(new MovieService()));
         commands.put(ORDER_TICKETS, new OrderTicketsCommand(new MovieService(), new OrderService()));
+        commands.put(ADD_ORDER, new AddOrderCommand(new OrderService(), new MovieService()));
+        commands.put(CONFIRM_ORDER, new ConfirmOrderCommand(new TicketService(), new OrderService()));
+        commands.put(CANCEL_ORDER, new CancelOrderCommand(new OrderService()));
 
     }
 

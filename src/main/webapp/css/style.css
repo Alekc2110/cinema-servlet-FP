@@ -38,20 +38,16 @@ html {
     height: 100%;
 }
 
+
+
 body {
     /*height: 100%;*/
     /*font: 15px/24px 'Ubuntu', serif;*/
     /*color: #3d3d3d;*/
     /*background: #1fc0ff;*/
-    /*!*background-image: url(../img/multiplex_main.jpg);*!*/
+    background-image: url(../img/multiplex_main.jpg);
 }
-/*.home{*/
-/*    background-image: url('http://www.aegisworld.com/wp-content/uploads/2013/06/65-3.jpg');*/
-/*    background-repeat: no-repeat;*/
-/*    background-position: center;*/
-/*    background-size: 100%;*/
 
-/*}*/
 
 .img-wrap {
     position: relative;
@@ -218,8 +214,8 @@ hr {
     padding: 16px 20px;
     border: none;
     cursor: pointer;
-    margin: 105px 0 8px;
-    width: 5%;
+    margin: 10px 50px 8px;
+    width: 50%;
     opacity: 1;
 }
 
@@ -471,7 +467,7 @@ p:empty {
 
 .grid-container {
     display: grid;
-    grid-gap: 50px 0;
+    grid-gap: 10px 0;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
     background-color: #2196F3;
     padding: 0;
@@ -479,7 +475,9 @@ p:empty {
 .grid-item {
     background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    padding: 10px;
     font-size: 30px;
     text-align: center;
 }
+
+.border1 {border: 1px solid rgba(204, 204, 204, 0);}

@@ -16,11 +16,10 @@ public class UserService {
 
     private DaoFactory factory = DaoFactory.getInstance();
     private PasswordEncoder passwordEncoder;
-    private ShoppingCartService shoppingCartService;
 
-    public UserService(PasswordEncoder passwordEncoder, ShoppingCartService shoppingCartService) {
+
+    public UserService(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-        this.shoppingCartService = shoppingCartService;
     }
 
     public Optional<User> findUserById(Long id) {
@@ -49,10 +48,8 @@ public class UserService {
 
             Optional<Long> userIdOpt = dao.save(user);
             Long userId = userIdOpt.orElseThrow(EntitySaveDaoException::new);
-            boolean isSavedShoppingCart = shoppingCartService.createShoppingCart(userId);
             Long roleId = dao.getRoleId(user.getRole().getName());
-            boolean isSavedUserRole = dao.saveUserRole(userId, roleId);
-            return isSavedShoppingCart && isSavedUserRole;
+            return dao.saveUserRole(userId, roleId);
         }
     }
 
