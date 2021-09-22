@@ -8,6 +8,8 @@ import com.my.cinema.booking.model.entity.Movie;
 import com.my.cinema.booking.model.entity.MovieSession;
 import org.apache.log4j.Logger;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,4 +84,12 @@ public class MovieService {
             return savedMovieSesOpt.orElseThrow(EntitySaveDaoException::new);
         }
     }
+
+//    public List<MovieSession> findMovieSessionsByDate(LocalDateTime date){
+//        try (MovieDao dao = factory.createMovieDao()) {
+//            LOG.debug("find movie session by id: " + msId);
+//            Optional<MovieSession> movieSesOptional = dao.getMovieSessionById(msId);
+//            return movieSesOptional.orElseThrow(EntityNotFoundException::new);
+//        }
+//    }
 }

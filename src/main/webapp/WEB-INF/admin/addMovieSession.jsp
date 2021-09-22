@@ -16,6 +16,20 @@
         <!-- Form Name -->
         <legend><fmt:message key="add.movie.session.table.title"/></legend>
 
+        <!-- Show_date input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="show_date"><fmt:message key="add.movie.session.table.show.date"/></label>
+            <div class="col-md-5">
+                <input
+                        id="show_date"
+                        name="show_date"
+                        type="text"
+                        class="form-control input-md"
+                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                >
+            </div>
+        </div>
+
         <!-- Show_time input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="show_time"><fmt:message key="add.movie.session.table.show.time"/></label>
@@ -25,7 +39,7 @@
                         name="show_time"
                         type="text"
                         class="form-control input-md"
-                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}\s+[0-9]{2}:[0-9]{2}$"
+                        required pattern="^[0-9]{2}:[0-9]{2}$"
                 >
             </div>
         </div>

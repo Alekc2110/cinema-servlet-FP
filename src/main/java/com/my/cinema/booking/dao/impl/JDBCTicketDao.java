@@ -2,9 +2,7 @@ package com.my.cinema.booking.dao.impl;
 
 import com.my.cinema.booking.dao.interfaces.TicketDao;
 import com.my.cinema.booking.dao.mapper.Mapper;
-import com.my.cinema.booking.dao.mapper.SeatMapper;
 import com.my.cinema.booking.dao.mapper.TicketMapper;
-import com.my.cinema.booking.model.entity.Seat;
 import com.my.cinema.booking.model.entity.Ticket;
 import org.apache.log4j.Logger;
 
@@ -15,8 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static com.my.cinema.booking.dao.constants.Queries.*;
+import static com.my.cinema.booking.dao.constants.Queries.GET_TICKETS;
+import static com.my.cinema.booking.dao.constants.Queries.SAVE_TICKET;
 
 public class JDBCTicketDao implements TicketDao {
     private static final Logger LOG = Logger.getLogger(JDBCTicketDao.class);

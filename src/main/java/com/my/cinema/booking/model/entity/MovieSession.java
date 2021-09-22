@@ -1,16 +1,23 @@
 package com.my.cinema.booking.model.entity;
 
-
-import java.time.LocalDateTime;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class MovieSession extends Entity {
 
     private Long movieId;
-    private LocalDateTime showTime;
+    private LocalDate date;
+    private LocalTime time;
     private int ticketPrice;
 
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 
     public Long getMovieId() {
         return movieId;
@@ -20,12 +27,12 @@ public class MovieSession extends Entity {
         this.movieId = movieId;
     }
 
-    public LocalDateTime getShowTime() {
-        return showTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setShowTime(LocalDateTime showTime) {
-        this.showTime = showTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public int getTicketPrice() {
@@ -39,7 +46,8 @@ public class MovieSession extends Entity {
     public static class Builder {
 
         private Long movieId;
-        private LocalDateTime showTime;
+        private LocalDate date;
+        private LocalTime time;
         private int ticketPrice;
 
         public Builder setMovieId(Long movieId) {
@@ -47,8 +55,14 @@ public class MovieSession extends Entity {
 
             return this;
         }
-        public Builder setShowTime(LocalDateTime showTime) {
-            this.showTime = showTime;
+        public Builder setDate(LocalDate date) {
+            this.date = date;
+
+            return this;
+        }
+
+        public Builder setTime(LocalTime time) {
+            this.time = time;
 
             return this;
         }
@@ -58,11 +72,11 @@ public class MovieSession extends Entity {
             return this;
         }
 
-
         public MovieSession build() {
             MovieSession movieSession = new MovieSession();
             movieSession.movieId = this.movieId;
-            movieSession.showTime = this.showTime;
+            movieSession.date = this.date;
+            movieSession.time = this.time;
             movieSession.ticketPrice = this.ticketPrice;
             return movieSession;
         }
@@ -72,7 +86,8 @@ public class MovieSession extends Entity {
     public String toString() {
         return "MovieSession{" +
                 "movieId=" + movieId +
-                ", showTime=" + showTime +
+                ", date=" + date +
+                ", time=" + time +
                 ", ticketPrice=" + ticketPrice +
                 '}';
     }

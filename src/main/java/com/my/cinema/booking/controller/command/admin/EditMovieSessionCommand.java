@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static com.my.cinema.booking.controller.command.Path.ADMIN_MANAGE_MOVIE_SES;
@@ -47,12 +49,14 @@ public class EditMovieSessionCommand extends Command {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 MovieSession movieSesById = movieService.findMovieSessionById(movSesId);
-                String showTime = request.getParameter("show_time");
+                String date = request.getParameter("show_date");
+                String time = request.getParameter("show_time");
                 String price = request.getParameter("price");
-                if (Validator.isCorrectTimeStamp(showTime) && Validator.isCorrectPrice(price)) {
+                if (Validator.isCorrectTime(time) && Validator.isCorrectDate(date) && Validator.isCorrectPrice(price)) {
                     MovieSession edited = new MovieSession.Builder().
                             setMovieId(movieSesById.getMovieId()).
-                            setShowTime(LocalDateTime.parse(showTime, formatter)).
+                            setDate(LocalDate.parse(date)).
+                            setTime(LocalTime.parse(time)).
                             setTicketPrice(Integer.parseInt(price)).
                             build();
                     edited.setId(movieSesById.getId());

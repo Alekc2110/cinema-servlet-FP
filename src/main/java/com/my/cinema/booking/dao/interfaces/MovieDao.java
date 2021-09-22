@@ -3,6 +3,7 @@ package com.my.cinema.booking.dao.interfaces;
 import com.my.cinema.booking.model.entity.Movie;
 import com.my.cinema.booking.model.entity.MovieSession;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

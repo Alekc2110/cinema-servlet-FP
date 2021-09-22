@@ -2,10 +2,7 @@ package com.my.cinema.booking.controller.command;
 
 import com.my.cinema.booking.controller.command.admin.*;
 import com.my.cinema.booking.controller.command.common.*;
-import com.my.cinema.booking.controller.command.user.AddOrderCommand;
-import com.my.cinema.booking.controller.command.user.CancelOrderCommand;
-import com.my.cinema.booking.controller.command.user.ConfirmOrderCommand;
-import com.my.cinema.booking.controller.command.user.UserAccountCommand;
+import com.my.cinema.booking.controller.command.user.*;
 import com.my.cinema.booking.service.MovieService;
 import com.my.cinema.booking.service.OrderService;
 import com.my.cinema.booking.service.TicketService;
@@ -34,7 +31,7 @@ public class CommandContainer {
         commands.put(ENTER_LOGIN, new EnterLoginCommand(new UserService(new SimplePasswordEncoder())));
         commands.put(REGISTER_USER, new RegisterUserCommand());
         commands.put(REGISTER, new RegistrationCommand(new UserService(new SimplePasswordEncoder())));
-        commands.put(SHOW_ALL_MOVIES, new ShowMoviesCommand(new MovieService()));
+        commands.put(SHOW_ALL_MOVIES, new ShowActiveMoviesCommand(new MovieService()));
         commands.put(SHOW_MOVIE_DETAIL, new ShowMovieDetailCommand(new MovieService()));
         commands.put(ADMIN_MANAGE_MOVIES, new ManageMoviesCommand(new MovieService()));
         commands.put(ADMIN_MANAGE_MOVIE_SES, new ManageMovieSessionCommand(new MovieService()));
@@ -49,6 +46,7 @@ public class CommandContainer {
         commands.put(ADD_ORDER, new AddOrderCommand(new OrderService(), new MovieService()));
         commands.put(CONFIRM_ORDER, new ConfirmOrderCommand(new TicketService(), new OrderService()));
         commands.put(CANCEL_ORDER, new CancelOrderCommand(new OrderService()));
+        commands.put(SHOW_MOVIE_TABLE, new ShowMoviesCommand(new MovieService()));
 
     }
 

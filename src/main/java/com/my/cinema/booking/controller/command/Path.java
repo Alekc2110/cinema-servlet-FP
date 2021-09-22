@@ -20,6 +20,7 @@ public interface Path {
     String PAGE_ORDER_MOVIE_S = "/WEB-INF/common/manageOrder.jsp";
     String PAGE_ORDER_TICKETS = "/WEB-INF/common/orderTickets.jsp";
     String PAGE_CONFIRM_ORDER = "/WEB-INF/user/confirmOrder.jsp";
+    String PAGE_SHOW_MOVIES_TABLE = "/WEB-INF/user/showMoviesTable.jsp";
 //    String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
 
     //commands
@@ -48,5 +49,6 @@ public interface Path {
     String ADD_ORDER = "/addOrder";
     String CONFIRM_ORDER = "/confirmOrder";
     String CANCEL_ORDER = "/cancelOrder";
+    String SHOW_MOVIE_TABLE = "/showMovieTable";
     String FORBIDDEN = "/forbidden";
 }

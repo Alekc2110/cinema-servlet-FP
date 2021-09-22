@@ -1,0 +1,41 @@
+const table = document.querySelector('table');
+let colIndex = -1;
+const sortTable = function (index, type, isSorted) {
+    const tbody = table.querySelector('tbody');
+    const compare = function (rowA, rowB) {
+       const rowDataA  = rowA.cells[index].innerHTML;
+        const rowDataB = rowB.cells[index].innerHTML;
+
+        if (type === 'text') {
+            if(rowDataA < rowDataB) return -1;
+            else if(rowDataA > rowDataB) return 1;
+            return 0;
+        }
+    };
+
+    let rows = [].slice.call(tbody.rows);
+
+    rows.sort(compare);
+
+    if(isSorted) rows.reverse();
+
+    table.removeChild(tbody);
+
+    for (let i = 0; i < rows.length; i++) {
+        tbody.appendChild(rows[i]);
+    }
+    table.appendChild(tbody);
+
+};
+
+table.addEventListener('click', (e) => {
+    const el = e.target;
+
+    if (el.nodeName !== 'TH') return;
+
+    const index = el.cellIndex;
+    const type = el.getAttribute('data-type');
+
+    sortTable(index, type, colIndex === index);
+    colIndex = (colIndex === index) ? -1: index;
+});

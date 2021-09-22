@@ -15,8 +15,6 @@
     <header id="header">
         <jsp:include page="/WEB-INF/parts/header.jsp"/>
         <div class="card">
-<%--            <img class="card-img-top" src="${pageContext.request.contextPath}/img/multiplex_main.jpg"--%>
-<%--                 width="1680" height="1050" alt="Card image">--%>
             <div class="card-img-overlay">
                 <div class="card-deck">
                     <div class="card bg-primary">
@@ -49,6 +47,5 @@
 </div>
 
 
-<%--<jsp:include page="/WEB-INF/parts/footer.jsp"/>--%>
 </body>
 </html>

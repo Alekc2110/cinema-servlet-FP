@@ -9,9 +9,14 @@ import com.my.cinema.booking.model.entity.MovieSession;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 
 import static com.my.cinema.booking.dao.constants.Queries.*;
+import static java.time.ZoneOffset.UTC;
 
 public class JDBCMovieDao implements MovieDao {
     private static final Logger LOG = Logger.getLogger(JDBCMovieDao.class);
@@ -164,9 +169,10 @@ public class JDBCMovieDao implements MovieDao {
     public boolean updateMovieSession(MovieSession movieSession) {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE_MOVIE_SES_BY_ID)) {
             ps.setLong(1, movieSession.getMovieId());
-            ps.setTimestamp(2, Timestamp.valueOf(movieSession.getShowTime()), Calendar.getInstance(TimeZone.getDefault()));
-            ps.setLong(3, movieSession.getTicketPrice());
-            ps.setLong(4, movieSession.getId());
+            ps.setDate(2, Date.valueOf(movieSession.getDate()), Calendar.getInstance(TimeZone.getDefault()));
+            ps.setTime(3, Time.valueOf(movieSession.getTime()));
+            ps.setLong(4, movieSession.getTicketPrice());
+            ps.setLong(5, movieSession.getId());
             if (ps.executeUpdate() != 1) {
                 return false;
             }
@@ -196,8 +202,9 @@ public class JDBCMovieDao implements MovieDao {
         ResultSet generatedKey = null;
         try (PreparedStatement ps = connection.prepareStatement(SAVE_MOVIE_SESSION, PreparedStatement.RETURN_GENERATED_KEYS)) {
             ps.setLong(1, movieSession.getMovieId());
-            ps.setTimestamp(2, Timestamp.valueOf(movieSession.getShowTime()), Calendar.getInstance(TimeZone.getDefault()));
-            ps.setInt(3, movieSession.getTicketPrice());
+            ps.setDate(2, Date.valueOf(movieSession.getDate()), Calendar.getInstance(TimeZone.getDefault()));
+            ps.setTime(3, Time.valueOf(movieSession.getTime()));
+            ps.setInt(4, movieSession.getTicketPrice());
             if (ps.executeUpdate() != 1) {
                 return Optional.empty();
             }

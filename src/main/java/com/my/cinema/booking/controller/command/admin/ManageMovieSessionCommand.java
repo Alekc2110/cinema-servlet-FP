@@ -23,7 +23,7 @@ public class ManageMovieSessionCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.info("showing movie sessions list for admin");
-        Long movieId = null;
+        Long movieId;
         String movieIdStr = request.getParameter("movieId");
 
         if (movieIdStr != null && !movieIdStr.isEmpty()) {

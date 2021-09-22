@@ -21,11 +21,14 @@
                 <c:forEach items="${requestScope.movieSessionList}" var="movieSession">
                     <p>
                         <a style="color: black" href="${pageContext.request.contextPath}/cinema/orderTickets?movieSesId=${movieSession.id}">
-                            <c:out value="${movieSession.showTime.dayOfMonth}"/>/
-                            <c:out value="${movieSession.showTime.month}"/>/
-                            <c:out value="${movieSession.showTime.year}"/> --
-                            <c:out value="${movieSession.showTime.hour}"/>:
-                            <c:out value="${movieSession.showTime.minute}"/>0
+                            <c:out value="${movieSession.date.dayOfMonth}"/>/
+                            <c:out value="${movieSession.date.month}"/>/
+                            <c:out value="${movieSession.date.year}"/> --
+                            <c:out value="${movieSession.date.hour}"/>:
+                            <c:out value="${movieSession.date.minute}"/>0
+                            <fmt:message key="show.movie.session.price"/>
+                            <c:out value="${movieSession.ticketPrice}"/>
+                            <fmt:message key="show.movie.session.currency"/>
                         </a>
                         <br>
                     </p>

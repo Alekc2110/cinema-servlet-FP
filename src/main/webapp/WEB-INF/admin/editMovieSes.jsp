@@ -15,6 +15,23 @@
         <!-- Form Name -->
         <legend><c:out value="${requestScope.movieTitle}"/></legend>
 
+        <!-- Show_date input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="show_date"><fmt:message key="update.movie.session.showtime"/></label>
+            <div class="col-md-5">
+                <input
+                        id="show_date"
+                        name="show_date"
+                        type="text"
+                        class="form-control input-md"
+                        data-pattern-error="<fmt:message key='data.non-valid'/>"
+                        data-required-error="<fmt:message key='data.required'/>"
+                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                        value="<c:out value="${requestScope.movieSesEdit.date}"/>"
+                >
+            </div>
+        </div>
+
         <!-- Show_time input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="show_time"><fmt:message key="update.movie.session.showtime"/></label>
@@ -26,8 +43,8 @@
                         class="form-control input-md"
                         data-pattern-error="<fmt:message key='data.non-valid'/>"
                         data-required-error="<fmt:message key='data.required'/>"
-                        required pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}\s+[0-9]{2}:[0-9]{2}$"
-                        value="<c:out value="${requestScope.movieSesEdit.showTime.year}"/>-<c:out value="${requestScope.movieSesEdit.showTime.month.ordinal()}"/>-<c:out value="${requestScope.movieSesEdit.showTime.dayOfMonth}"/> <c:out value="${requestScope.movieSesEdit.showTime.hour}"/>:<c:out value="${requestScope.movieSesEdit.showTime.minute}"/>"
+                        required pattern="^[0-9]{2}:[0-9]{2}$"
+                        value="<c:out value="${requestScope.movieSesEdit.time}"/>"
                 >
             </div>
         </div>

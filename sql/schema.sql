@@ -43,7 +43,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cinema_bs`.`movie_session` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `movie_id` INT NOT NULL,
-  `show_time` DATETIME NOT NULL,
+  `show_date` DATE NOT NULL,
+  `show_time` TIME NOT NULL,
   `ticket_price` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_ms_movie_id_idx` (`movie_id` ASC) VISIBLE,
@@ -146,25 +147,24 @@ CREATE TABLE IF NOT EXISTS `cinema_bs`.`ticket` (
   CONSTRAINT `fk_movie_session`
     FOREIGN KEY (`movie_session_id`)
     REFERENCES `cinema_bs`.`movie_session` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_row_id`
     FOREIGN KEY (`row_id`)
     REFERENCES `cinema_bs`.`row` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_seat_id`
     FOREIGN KEY (`seat_id`)
     REFERENCES `cinema_bs`.`seat` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_order_id`
     FOREIGN KEY (`order_id`)
     REFERENCES `cinema_bs`.`order` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `cinema_bs`.`role`

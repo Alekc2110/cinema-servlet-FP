@@ -57,6 +57,21 @@
                     <fmt:message key="nav.bar.all.movies"/></a>
             </c:if>
         </li>
+
+        <li class="nav-item">
+            <c:if test="${sessionScope.loginedUser.role.name().equals('ADMIN') || sessionScope.loginedUser.role.name().equals('USER')}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/cinema/showMovieTable">
+                    <fmt:message key="nav.bar.all.movies.table"/></a>
+            </c:if>
+        </li>
+
+        <li class="nav-item">
+            <c:if test="${sessionScope.loginedUser.role.name().equals('USER')}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/cinema/movieTimeTable">
+                    <fmt:message key="nav.bar.all.movies.timetable"/></a>
+            </c:if>
+        </li>
+
         <li class="nav-item">
             <c:if test="${!sessionScope.loginedUser.role.name().equals('ADMIN') && !sessionScope.loginedUser.role.name().equals('USER')}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/cinema/login">

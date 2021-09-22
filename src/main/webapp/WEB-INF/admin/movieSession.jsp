@@ -60,13 +60,10 @@
         <c:forEach items="${requestScope.moviesSesList}" var="movieSession">
             <tr>
                 <td>
-                    <c:out value="${movieSession.showTime.dayOfMonth}"/>/
-                    <c:out value="${movieSession.showTime.month}"/>/
-                    <c:out value="${movieSession.showTime.year}"/>
+                    <c:out value="${movieSession.date}"/>
                 </td>
                 <td>
-                    <c:out value="${movieSession.showTime.hour}"/>:
-                    <c:out value="${movieSession.showTime.minute}"/>
+                    <c:out value="${movieSession.time}"/>
                 </td>
                 <td><c:out value="${movieSession.ticketPrice}"/></td>
                 <td><a href="${pageContext.request.contextPath}/cinema/editMovieSession?id=${movieSession.id}">

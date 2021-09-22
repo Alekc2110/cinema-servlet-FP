@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static com.my.cinema.booking.controller.command.Path.*;
@@ -29,7 +31,7 @@ public class AddMovieSessionCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        Long movieId = null;
+        Long movieId;
         LOG.info("starts command add new movie session");
         String contextAndServletPath = request.getContextPath() + request.getServletPath();
 
@@ -40,14 +42,16 @@ public class AddMovieSessionCommand extends Command {
             return Path.PAGE_ADMIN_ADD_MOVIE_S;
         } else {
             HttpSession session = request.getSession();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+           // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             movieId =  Long.parseLong(request.getParameter("movieId"));
-            String showTime = request.getParameter("show_time");
+            String date = request.getParameter("show_date");
+            String time = request.getParameter("show_time");
             String price = request.getParameter("price");
-            if (Validator.isCorrectTimeStamp(showTime) && Validator.isCorrectPrice(price)) {
+            if (Validator.isCorrectTime(time) && Validator.isCorrectDate(date) && Validator.isCorrectPrice(price)) {
                 MovieSession newMovieSession = new MovieSession.Builder().
                         setMovieId(movieId).
-                        setShowTime(LocalDateTime.parse(showTime, formatter)).
+                        setDate(LocalDate.parse(date)).
+                        setTime(LocalTime.parse(time)).
                         setTicketPrice(Integer.parseInt(price)).
                         build();
                 try {

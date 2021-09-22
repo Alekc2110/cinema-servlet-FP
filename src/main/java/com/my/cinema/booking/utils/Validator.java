@@ -3,7 +3,9 @@ package com.my.cinema.booking.utils;
 import com.my.cinema.booking.controller.command.common.RegistrationCommand;
 import org.apache.log4j.Logger;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
@@ -13,7 +15,8 @@ public class Validator {
     private static final String EMAIL_PATTERN = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$";
     private static final String CORRECT_PASSWORD = "[a-zA-Z0-9]{4,20}";
     private static final String CORRECT_NAME = "[a-zA-Z\\p{IsCyrillic}]{3,20}";
-    private static final String CORRECT_TIME_STAMP = "^[0-9]{4}-[0-9]{2}-[0-9]{2}\\s+[0-9]{2}:[0-9]{2}$";
+    private static final String CORRECT_DATE = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
+    private static final String CORRECT_TIME = "^[0-9]{2}:[0-9]{2}$";
     private static final String CORRECT_PRICE = "^[0-9]{1,3}$";
 
     private Validator() {
@@ -48,15 +51,30 @@ public class Validator {
         return !(isCorrectName(name) && isCorrectEmail(email) && isValidPassword(password, repeatPassword));
     }
 
-    public static boolean isCorrectTimeStamp(String timeStamp) {
+    public static boolean isCorrectTime(String time) {
         Pattern VALID_NAME_REG =
-                Pattern.compile(CORRECT_TIME_STAMP);
-        Matcher matcher = VALID_NAME_REG.matcher(timeStamp);
+                Pattern.compile(CORRECT_TIME);
+        Matcher matcher = VALID_NAME_REG.matcher(time);
         boolean matches = matcher.matches();
         if(matches){
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                final LocalDateTime parse = LocalDateTime.parse(timeStamp, formatter);
+                LocalTime.parse(time);
+                return true;
+            } catch (DateTimeParseException e){
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isCorrectDate(String date) {
+        Pattern VALID_NAME_REG =
+                Pattern.compile(CORRECT_DATE);
+        Matcher matcher = VALID_NAME_REG.matcher(date);
+        boolean matches = matcher.matches();
+        if(matches){
+            try {
+                LocalDate.parse(date);
                 return true;
             } catch (DateTimeParseException e){
                 return false;

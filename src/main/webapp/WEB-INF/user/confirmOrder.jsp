@@ -24,11 +24,11 @@
                     <h2><strong><fmt:message key="order.confirmation.title"/></strong></h2>
                     <br>
                     <h3><strong><fmt:message key="order.confirmation.movie.session.time"/></strong>
-                        <c:out value="${requestScope.movieSession.showTime.dayOfMonth}"/>/
-                        <c:out value="${requestScope.movieSession.showTime.month}"/>/
-                        <c:out value="${requestScope.movieSession.showTime.year}"/> ---
-                        <c:out value="${requestScope.movieSession.showTime.hour}"/>:
-                        <c:out value="${requestScope.movieSession.showTime.minute}"/>0
+                        <c:out value="${requestScope.movieSession.date.dayOfMonth}"/>/
+                        <c:out value="${requestScope.movieSession.date.month}"/>/
+                        <c:out value="${requestScope.movieSession.date.year}"/> ---
+                        <c:out value="${requestScope.movieSession.date.hour}"/>:
+                        <c:out value="${requestScope.movieSession.date.minute}"/>0
                     </h3>
                     <br>
                     <h3><strong><fmt:message key="order.confirmation.order.price"/></strong><c:out

@@ -24,9 +24,9 @@ public final class Queries {
     public static final String DELETE_MOVIE_BY_ID = "DELETE FROM `movie` WHERE id = ?";
     public static final String UPDATE_MOVIE_BY_ID = "UPDATE `movie` SET title=?, description=?, photo_url=?, director=?, country=?, year=? WHERE id=?";
     public static final String SAVE_MOVIE = "INSERT INTO `movie` (title, description, photo_url, director, country, year) VALUES (?,?,?,?,?,?)";
-    public static final String SAVE_MOVIE_SESSION = "INSERT INTO `movie_session` (movie_id, show_time, ticket_price) VALUES (?,?,?)";
+    public static final String SAVE_MOVIE_SESSION = "INSERT INTO `movie_session` (movie_id, show_date, show_time, ticket_price) VALUES (?,?,?,?)";
     public static final String GET_MOVIE_SES_BY_ID = "SELECT * FROM `movie_session` where id = ?";
-    public static final String UPDATE_MOVIE_SES_BY_ID = "UPDATE `movie_session` SET movie_id=?, show_time=?, ticket_price=? WHERE id=?";
+    public static final String UPDATE_MOVIE_SES_BY_ID = "UPDATE `movie_session` SET movie_id=?, show_date=?, show_time=?, ticket_price=? WHERE id=?";
     public static final String DELETE_MOVIE_SES_BY_ID = "DELETE FROM `movie_session` WHERE id = ?";
 
     //OrderDao
