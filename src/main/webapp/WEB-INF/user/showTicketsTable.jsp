@@ -19,34 +19,35 @@
     <input class="form-control table-sm" id="myInput" type="text" placeholder="Search..">
     <br>
 
-    <table id="movies" class="table table-bordered table-sm">
+    <table id="tickets" class="table table-bordered table-sm">
         <thead class="thead-light">
         <tr>
-            <th data-type="text" class="th-sm cursor"><fmt:message key="show.movie.title"/>
+            <th data-type="text" class="th-sm cursor"><fmt:message key="show.ticket.date"/>
                 <img src="${pageContext.request.contextPath}/img/sort-icon.png" width="20px" height="20px" alt="sort">
             </th>
-            <th data-type="text" class="th-sm cursor"><fmt:message key="show.movie.director"/>
+            <th data-type="text" class="th-sm cursor"><fmt:message key="show.ticket.time"/>
                 <img src="${pageContext.request.contextPath}/img/sort-icon.png" width="20px" height="20px" alt="sort">
             </th>
-            <th data-type="text" class="th-sm cursor"><fmt:message key="show.movie.year"/>
+            <th data-type="text" class="th-sm cursor"><fmt:message key="show.ticket.row.number"/>
                 <img src="${pageContext.request.contextPath}/img/sort-icon.png" width="20px" height="20px" alt="sort">
             </th>
-            <th data-type="text" class="th-sm cursor"><fmt:message key="show.movie.country"/>
+            <th data-type="text" class="th-sm cursor"><fmt:message key="show.ticket.seat.number"/>
                 <img src="${pageContext.request.contextPath}/img/sort-icon.png" width="20px" height="20px" alt="sort">
             </th>
-            <th data-type="text" class="th-sm cursor"><fmt:message key="show.movie.details"/></th>
+            <th data-type="text" class="th-sm cursor"><fmt:message key="show.ticket.price"/>
+                <img src="${pageContext.request.contextPath}/img/sort-icon.png" width="20px" height="20px" alt="sort">
+            </th>
         </tr>
         </thead>
         <tbody id="tbody">
-        <c:forEach items="${requestScope.movieList}" var="movie">
+        <c:forEach items="${requestScope.ticketList}" var="ticket">
             <tr>
-                <td><c:out value="${movie.title}"/></td>
-                <td><c:out value="${movie.director}"/></td>
-                <td><c:out value="${movie.year}"/></td>
-                <td><c:out value="${movie.country}"/></td>
-                <td><a style="color: #a71d2a"
-                       href="${pageContext.request.contextPath}/cinema/movieDetail?id=${movie.id}">
-                    <fmt:message key="show.movie.table.details.link"/></a></td>
+                <td><c:out value="${ticket.movieSession.date}"/></td>
+                <td><c:out value="${ticket.movieSession.time}"/></td>
+                <td><c:out value="${ticket.row.number}"/></td>
+                <td><c:out value="${ticket.seat.number}"/></td>
+                <td><c:out value="${ticket.movieSession.ticketPrice}"/></td>
+
             </tr>
         </c:forEach>
         </tbody>

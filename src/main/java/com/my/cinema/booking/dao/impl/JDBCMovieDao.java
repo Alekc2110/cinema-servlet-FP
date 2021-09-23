@@ -6,17 +6,15 @@ import com.my.cinema.booking.dao.mapper.MovieMapper;
 import com.my.cinema.booking.dao.mapper.MovieSessionMapper;
 import com.my.cinema.booking.model.entity.Movie;
 import com.my.cinema.booking.model.entity.MovieSession;
+import com.my.cinema.booking.model.entity.Seat;
 import org.apache.log4j.Logger;
 
-import java.sql.*;
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 
 import static com.my.cinema.booking.dao.constants.Queries.*;
-import static java.time.ZoneOffset.UTC;
 
 public class JDBCMovieDao implements MovieDao {
     private static final Logger LOG = Logger.getLogger(JDBCMovieDao.class);
@@ -51,7 +49,7 @@ public class JDBCMovieDao implements MovieDao {
             } catch (SQLException ex) {
                 LOG.error("Exception when trying to rollback:" + ex.getMessage());
             }
-            return allMovies;
+            return Collections.emptyList();
         } finally {
             try {
                 connection.setAutoCommit(true);
@@ -227,6 +225,26 @@ public class JDBCMovieDao implements MovieDao {
     }
 
     @Override
+    public List<MovieSession> getMovieSesByDate(LocalDate date) {
+        List<MovieSession> movieSessions = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(GET_MOVIE_SESSIONS_BY_DATE)) {
+            ps.setDate(1, Date.valueOf(date), Calendar.getInstance(TimeZone.getDefault()));
+            final ResultSet rs = ps.executeQuery();
+            LOG.debug("Executed query: " + GET_MOVIE_SESSIONS_BY_DATE);
+            Mapper<MovieSession> movieSessionMapper = new MovieSessionMapper();
+            while (rs.next()) {
+                LOG.debug("check if rs has next");
+                final MovieSession movieSession = movieSessionMapper.getEntity(rs);
+                movieSessions.add(movieSession);
+            }
+            return movieSessions;
+        } catch (SQLException e) {
+            LOG.error("SQLException in 'getMovieSessionsByDate' in JdbcMovieDao", e);
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
     public List<MovieSession> getMovieSessionsByMovie(Long movieId) {
         List<MovieSession> movieSessions = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(GET_M_S_BY_MOVIE_ID)) {
@@ -242,7 +260,7 @@ public class JDBCMovieDao implements MovieDao {
             return movieSessions;
         } catch (SQLException e) {
             LOG.error("SQLException in 'getMovieSessionsByMovie' in JdbcMovieDao", e);
-            return movieSessions;
+            return Collections.emptyList();
         }
     }
 

@@ -21,11 +21,8 @@
             </c:if>
             <h1 style="color: #a71d2a"><c:out value="${requestScope.movie.title}"/></h1>
             <h3><fmt:message key="show.movie.session.title"/>
-                <c:out value="${requestScope.movieSession.date.dayOfMonth}"/>/
-                <c:out value="${requestScope.movieSession.date.month}"/>/
-                <c:out value="${requestScope.movieSession.date.year}"/> --
-                <c:out value="${requestScope.movieSession.date.hour}"/>:
-                <c:out value="${requestScope.movieSession.date.minute}"/>0
+                <c:out value="${requestScope.movieSession.date}"/> --
+                <c:out value="${requestScope.movieSession.time}"/>
             </h3>
 
             <form method="POST" action="${pageContext.request.contextPath}/cinema/addOrder?movieSesId=${requestScope.movieSession.id}">

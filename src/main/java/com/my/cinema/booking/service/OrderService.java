@@ -10,8 +10,10 @@ import com.my.cinema.booking.model.entity.Seat;
 import com.my.cinema.booking.model.entity.Ticket;
 import org.apache.log4j.Logger;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class OrderService {
     private static final Logger LOG = Logger.getLogger(OrderService.class);
@@ -83,4 +85,15 @@ public class OrderService {
             return dao.deleteOrder(orderId);
         }
     }
+
+    public int getCountBookedSeatByDate(LocalDate date) {
+        AtomicInteger count = new AtomicInteger();
+        try (OrderDao dao = factory.createOrderDao()) {
+            LOG.debug("return count of booked seats by date: " + date);
+            final List<Seat> bookedSeatByDate = dao.getBookedSeatByDate(date);
+            bookedSeatByDate.forEach(seat -> count.getAndIncrement());
+            return count.get();
+        }
+    }
+
 }

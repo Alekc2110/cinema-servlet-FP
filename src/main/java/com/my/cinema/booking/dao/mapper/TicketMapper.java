@@ -51,10 +51,4 @@ public class TicketMapper implements Mapper<Ticket> {
     }
 
 
-    private LocalDateTime convertDate(Timestamp timestamp) {
-        return timestamp.toInstant().atZone(ZoneOffset.UTC).toLocalDateTime();
-    }
-
-
-
 }

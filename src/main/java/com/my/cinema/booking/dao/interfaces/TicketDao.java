@@ -11,5 +11,7 @@ public interface TicketDao extends AutoCloseable{
 
     List<Ticket> getTicketsBySession(Long movieSesId);
 
+    List<Ticket> getTicketsByUserId(Long userId);
+
     void close();
 }

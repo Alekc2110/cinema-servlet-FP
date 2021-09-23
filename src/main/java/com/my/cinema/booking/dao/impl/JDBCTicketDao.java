@@ -11,10 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static com.my.cinema.booking.dao.constants.Queries.GET_TICKETS;
-import static com.my.cinema.booking.dao.constants.Queries.SAVE_TICKET;
+import static com.my.cinema.booking.dao.constants.Queries.*;
 
 public class JDBCTicketDao implements TicketDao {
     private static final Logger LOG = Logger.getLogger(JDBCTicketDao.class);
@@ -55,7 +55,6 @@ public class JDBCTicketDao implements TicketDao {
         } finally {
             try {
                 connection.setAutoCommit(true);
-//                connection.close();
             } catch (SQLException e) {
                 LOG.error("SQLException when setAutoCommit true in 'saveTickets': " + e);
             }
@@ -66,10 +65,10 @@ public class JDBCTicketDao implements TicketDao {
     @Override
     public List<Ticket> getTicketsBySession(Long movieSesId) {
         List<Ticket> ticketList = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement(GET_TICKETS)) {
+        try (PreparedStatement ps = connection.prepareStatement(GET_TICKETS_BY_SES)) {
             ps.setLong(1, movieSesId);
             final ResultSet rs = ps.executeQuery();
-            LOG.debug("Executed query: " + GET_TICKETS);
+            LOG.debug("Executed query: " + GET_TICKETS_BY_SES);
             Mapper<Ticket> ticketMapper = new TicketMapper();
             while (rs.next()) {
                 LOG.debug("check if rs has next");
@@ -79,7 +78,27 @@ public class JDBCTicketDao implements TicketDao {
             return ticketList;
         } catch (SQLException e) {
             LOG.error("SQLException in 'getTicketsBySession' in JdbcTicketDao", e);
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<Ticket> getTicketsByUserId(Long userId) {
+        List<Ticket> ticketList = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(GET_TICKETS_BY_USER)) {
+            ps.setLong(1, userId);
+            final ResultSet rs = ps.executeQuery();
+            LOG.debug("Executed query: " + GET_TICKETS_BY_USER);
+            Mapper<Ticket> ticketMapper = new TicketMapper();
+            while (rs.next()) {
+                LOG.debug("check if rs has next");
+                Ticket ticket = ticketMapper.getEntity(rs);
+                ticketList.add(ticket);
+            }
             return ticketList;
+        } catch (SQLException e) {
+            LOG.error("SQLException in 'getTicketsByUserId' in JdbcTicketDao", e);
+            return Collections.emptyList();
         }
     }
 

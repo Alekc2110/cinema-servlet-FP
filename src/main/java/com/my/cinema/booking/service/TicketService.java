@@ -26,4 +26,12 @@ public class TicketService {
             return dao.getTicketsBySession(movieSesId);
         }
     }
+
+    public List<Ticket> findTicketByUserId(Long userId) {
+        try (TicketDao dao = factory.createTicketDao()) {
+            LOG.debug("return list tickets by user id: "+ userId);
+            return dao.getTicketsByUserId(userId);
+        }
+    }
+
 }

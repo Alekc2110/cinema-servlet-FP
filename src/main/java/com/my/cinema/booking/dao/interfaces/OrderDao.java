@@ -5,6 +5,7 @@ import com.my.cinema.booking.model.entity.Row;
 import com.my.cinema.booking.model.entity.Seat;
 import com.my.cinema.booking.model.entity.Ticket;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,8 @@ public interface OrderDao extends AutoCloseable {
     boolean updateOrder(Order order);
 
     boolean saveSessionBookSeats(Long movieSesId, List<Ticket> list);
+
+    List<Seat> getBookedSeatByDate(LocalDate date);
 
     boolean deleteOrder(Long orderId);
 

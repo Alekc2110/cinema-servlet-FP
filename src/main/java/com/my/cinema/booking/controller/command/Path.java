@@ -21,6 +21,8 @@ public interface Path {
     String PAGE_ORDER_TICKETS = "/WEB-INF/common/orderTickets.jsp";
     String PAGE_CONFIRM_ORDER = "/WEB-INF/user/confirmOrder.jsp";
     String PAGE_SHOW_MOVIES_TABLE = "/WEB-INF/user/showMoviesTable.jsp";
+    String PAGE_SHOW_TICKETS_TABLE = "/WEB-INF/user/showTicketsTable.jsp";
+    String PAGE_SHOW_TIMETABLE = "/WEB-INF/user/timeTable.jsp";
 //    String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
 
     //commands
@@ -50,5 +52,8 @@ public interface Path {
     String CONFIRM_ORDER = "/confirmOrder";
     String CANCEL_ORDER = "/cancelOrder";
     String SHOW_MOVIE_TABLE = "/showMovieTable";
+    String SHOW_TIMETABLE = "/movieTimeTable";
+    String SHOW_STATISTIC = "/showStat";
+    String SHOW_TICKETS_TABLE = "/ticketsTable";
     String FORBIDDEN = "/forbidden";
 }

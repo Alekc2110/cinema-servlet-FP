@@ -26,6 +26,20 @@
                     <h5 style="color: #ffffff" class="card-title"><fmt:message key="user.account.name"/><c:out value="${sessionScope.loginedUser.name}"/></h5>
                     <br/>
                     <h5 style="color: #ffffff" class="card-title"><fmt:message key="user.account.email"/><c:out value="${sessionScope.loginedUser.email}"/></h5>
+                    <form method="POST" action="${pageContext.request.contextPath}/cinema/showStat">
+                        <div class="form-group">
+                            <h2><fmt:message key="user.account.show.stat"/></h2>
+                            <label for="inputDate"><fmt:message key="user.account.enter.date"/></label>
+                            <input style="width: 20%" type="date"  name="date" class="form-control" id="inputDate">
+                        </div>
+                        <button type="submit" class="buttonSub"><fmt:message key="login.submit.btn"/></button>
+                    </form>
+                    <br>
+                    <div style="width: 30%" class="progress">
+                        <div class="progress-bar" title="<c:out value="${requestScope.percentage}"/>%" style="width:<c:out value="${requestScope.percentage}"/>%"><c:out value="${requestScope.percentage}"/>%</div>
+                    </div>
+
+
                 </div>
         </div>
 

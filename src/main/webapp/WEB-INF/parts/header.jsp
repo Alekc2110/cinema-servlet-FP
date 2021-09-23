@@ -73,6 +73,13 @@
         </li>
 
         <li class="nav-item">
+            <c:if test="${sessionScope.loginedUser.role.name().equals('ADMIN') || sessionScope.loginedUser.role.name().equals('USER')}">
+                <a class="nav-link" href="${pageContext.request.contextPath}/cinema/ticketsTable">
+                    <fmt:message key="nav.bar.all.movies.tickets"/></a>
+            </c:if>
+        </li>
+
+        <li class="nav-item">
             <c:if test="${!sessionScope.loginedUser.role.name().equals('ADMIN') && !sessionScope.loginedUser.role.name().equals('USER')}">
                 <a class="nav-link" href="${pageContext.request.contextPath}/cinema/login">
                     <fmt:message key="user.account.login"/></a>

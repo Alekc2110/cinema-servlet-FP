@@ -20,6 +20,8 @@ public class SecurityConfig {
         urlUserPatterns.add(CONFIRM_ORDER);
         urlUserPatterns.add(CANCEL_ORDER);
         urlUserPatterns.add(SHOW_MOVIE_TABLE);
+        urlUserPatterns.add(SHOW_TIMETABLE);
+        urlUserPatterns.add(SHOW_TICKETS_TABLE);
         urlUserPatterns.add(LOGOUT);
 
         mapConfig.put(Role.USER, urlUserPatterns);
@@ -38,6 +40,8 @@ public class SecurityConfig {
         urlAdminPatterns.add(CONFIRM_ORDER);
         urlAdminPatterns.add(CANCEL_ORDER);
         urlAdminPatterns.add(SHOW_MOVIE_TABLE);
+        urlAdminPatterns.add(SHOW_STATISTIC);
+        urlAdminPatterns.add(SHOW_TICKETS_TABLE);
         urlAdminPatterns.add(LOGOUT);
 
         mapConfig.put(Role.ADMIN, urlAdminPatterns);

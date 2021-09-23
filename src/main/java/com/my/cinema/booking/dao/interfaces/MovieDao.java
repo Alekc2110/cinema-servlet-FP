@@ -2,7 +2,9 @@ package com.my.cinema.booking.dao.interfaces;
 
 import com.my.cinema.booking.model.entity.Movie;
 import com.my.cinema.booking.model.entity.MovieSession;
+import com.my.cinema.booking.model.entity.Seat;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +30,8 @@ public interface MovieDao extends AutoCloseable {
     boolean deleteMovieSessionById(Long MovieSesId);
 
     Optional<Long> saveMovieSes(MovieSession movieSession);
+
+    List<MovieSession> getMovieSesByDate(LocalDate date);
 
     void close();
 

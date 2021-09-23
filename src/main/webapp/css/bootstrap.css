@@ -5705,7 +5705,7 @@ a.badge-dark:focus, a.badge-dark.focus {
     display: flex;
     height: 1rem;
     overflow: hidden;
-    line-height: 0;
+    line-height: 5;
     font-size: 0.75rem;
     background-color: #e9ecef;
     border-radius: 0.25rem;

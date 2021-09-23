@@ -47,7 +47,9 @@ public class CommandContainer {
         commands.put(CONFIRM_ORDER, new ConfirmOrderCommand(new TicketService(), new OrderService()));
         commands.put(CANCEL_ORDER, new CancelOrderCommand(new OrderService()));
         commands.put(SHOW_MOVIE_TABLE, new ShowMoviesCommand(new MovieService()));
-
+        commands.put(SHOW_TIMETABLE, new TimetableUserCommand(new MovieService()));
+        commands.put(SHOW_STATISTIC, new ShowStatCommand(new OrderService()));
+        commands.put(SHOW_TICKETS_TABLE, new ShowTicketsTableCommand(new TicketService()));
     }
 
     public static Command getCommand(String commandName) {

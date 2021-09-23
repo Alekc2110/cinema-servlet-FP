@@ -2,17 +2,16 @@ package com.my.cinema.booking.dao.impl;
 
 import com.my.cinema.booking.dao.interfaces.OrderDao;
 import com.my.cinema.booking.dao.mapper.Mapper;
-import com.my.cinema.booking.dao.mapper.MovieMapper;
-import com.my.cinema.booking.dao.mapper.MovieSessionMapper;
 import com.my.cinema.booking.dao.mapper.SeatMapper;
 import com.my.cinema.booking.model.entity.*;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 
 import static com.my.cinema.booking.dao.constants.Queries.*;
-import static com.my.cinema.booking.dao.constants.Queries.GET_MOVIE_BY_ID;
 
 
 public class JDBCOrderDao implements OrderDao {
@@ -179,12 +178,34 @@ public class JDBCOrderDao implements OrderDao {
         } finally {
             try {
                 connection.setAutoCommit(true);
-                //connection.close();
             } catch (SQLException e) {
                 LOG.error("SQLException when setAutoCommit true in 'saveSessionBookSeats': " + e);
             }
         }
         return false;
+    }
+
+    @Override
+    public List<Seat> getBookedSeatByDate(LocalDate date) {
+        List<Seat> bookedSeats = new ArrayList<>();
+        try (PreparedStatement ps = connection.prepareStatement(GET_BOOKED_SEATS_BY_DATE)) {
+            ps.setDate(1, Date.valueOf(date), Calendar.getInstance(TimeZone.getDefault()));
+            final ResultSet rs = ps.executeQuery();
+            LOG.debug("Executed query: " + GET_BOOKED_SEATS_BY_DATE);
+            while (rs.next()) {
+                LOG.debug("check if rs has next");
+                Seat seat = new Seat();
+                seat.setRowId(rs.getLong("row_id"));
+                seat.setNumber(rs.getInt("number"));
+                seat.setId(rs.getLong("s.id"));
+                bookedSeats.add(seat);
+            }
+
+            return bookedSeats;
+        } catch (SQLException e) {
+            LOG.error("SQLException in 'getCountBookedSeatByDate' in JdbcMovieDao", e);
+            return Collections.emptyList();
+        }
     }
 
     @Override
@@ -200,6 +221,8 @@ public class JDBCOrderDao implements OrderDao {
         }
         return true;
     }
+
+
 
     @Override
     public void close() {
