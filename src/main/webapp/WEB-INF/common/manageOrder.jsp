@@ -11,7 +11,7 @@
 
 <div id="wrapper">
     <header id="header">
-        <jsp:include page="/WEB-INF/parts/header.jsp"/>
+        <jsp:include page="/WEB-INF/parts/header1.jsp"/>
         <div style="width: 100%;" class="container">
 
             <img src="<c:out value="${requestScope.movie.photoUrl}"/>" alt="movie image url"

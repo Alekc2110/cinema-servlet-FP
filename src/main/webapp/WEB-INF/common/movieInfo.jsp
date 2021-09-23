@@ -11,7 +11,7 @@
 
 <div id="wrapper">
     <header id="header">
-        <jsp:include page="/WEB-INF/parts/header.jsp"/>
+        <jsp:include page="/WEB-INF/parts/header1.jsp"/>
         <div class="card">
             <div class="card-body">
                 <h1 class="card-title"><c:out value="${requestScope.movie.title}"/></h1>

@@ -11,7 +11,7 @@
 
 <div id="wrapper">
     <header id="header">
-        <jsp:include page="/WEB-INF/parts/header.jsp"/>
+        <jsp:include page="/WEB-INF/parts/header1.jsp"/>
         <div style="width: 100%;" class="container">
             <c:if test="${param.bookedSeats == true}">
                 <p class="errorsM"><fmt:message key="order.booked.seats.true"/></p>
