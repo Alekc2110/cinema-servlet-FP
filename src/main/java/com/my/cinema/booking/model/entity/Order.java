@@ -18,6 +18,13 @@ public class Order extends Entity {
 
     }
 
+    public Order(LocalDateTime orderTime, Long userId, int orderPrice, Status orderStatus) {
+        this.orderTime = orderTime;
+        this.userId = userId;
+        this.orderPrice = orderPrice;
+        this.orderStatus = orderStatus;
+    }
+
     public Status getOrderStatus() {
         return orderStatus;
     }

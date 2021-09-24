@@ -96,6 +96,17 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public boolean isEmailExists(String email) {
+        try (PreparedStatement ps = connection.prepareStatement(GET_USER_BY_EMAIL)) {
+            ps.setString(1, email);
+            final ResultSet rs = ps.executeQuery();
+            LOG.debug("Executed query" + GET_USER_BY_EMAIL);
+            if (rs.next()) {
+                LOG.debug("check if rs has next");
+                return true;
+            }
+        } catch (SQLException e) {
+            LOG.error("SQLException when isEmailExists in UserDao", e);
+        }
         return false;
     }
 

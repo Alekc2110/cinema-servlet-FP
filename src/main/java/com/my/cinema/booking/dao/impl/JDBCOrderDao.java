@@ -23,11 +23,6 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
-    public List<Order> findAllOrders() {
-        return null;
-    }
-
-    @Override
     public List<Seat> findAllBookedSeats(Long movieSesId) {
         List<Seat> bookedSeatsList = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(GET_BOOKED_SEATS)) {
@@ -87,17 +82,18 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public Optional<Row> getRowById(Long rowId) {
-        Row row = new Row();
+        Row row = null;
         try (PreparedStatement ps = connection.prepareStatement(GET_ROW_BY_ID)) {
             ps.setLong(1, rowId);
             final ResultSet rs = ps.executeQuery();
             LOG.debug("Executed query: " + GET_ROW_BY_ID);
             while (rs.next()) {
                 LOG.debug("check if rs has next");
+                row = new Row();
                 row.setNumber(rs.getInt("number"));
                 row.setId(rs.getLong("id"));
             }
-            return Optional.of(row);
+            return Optional.ofNullable(row);
         } catch (SQLException e) {
             LOG.error("SQLException in 'getRowById' in JdbcOrderDao", e);
             return Optional.empty();

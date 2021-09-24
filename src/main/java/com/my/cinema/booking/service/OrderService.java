@@ -20,13 +20,6 @@ public class OrderService {
 
     private DaoFactory factory = DaoFactory.getInstance();
 
-    public List<Order> findAllOrders() {
-        try (OrderDao dao = factory.createOrderDao()) {
-            LOG.debug("find all orders");
-            return dao.findAllOrders();
-        }
-    }
-
     public List<Seat> findAllBookedSeats(Long movieSessionId) {
         try (OrderDao dao = factory.createOrderDao()) {
             LOG.debug("find all booked seats by movieSessionId: " + movieSessionId);

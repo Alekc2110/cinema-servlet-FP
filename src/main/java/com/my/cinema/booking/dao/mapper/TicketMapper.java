@@ -33,10 +33,10 @@ public class TicketMapper implements Mapper<Ticket> {
 
     private MovieSession getMovieSession(ResultSet rs) throws SQLException {
         MovieSession movieSession = new MovieSession.Builder()
-                .setMovieId(Long.parseLong(rs.getString("movie_id")))
+                .setMovieId(rs.getLong("movie_id"))
                 .setDate(rs.getDate("show_date").toLocalDate())
                 .setTime(rs.getTime("show_time").toLocalTime())
-                .setTicketPrice(Integer.parseInt(rs.getString("ticket_price")))
+                .setTicketPrice(rs.getInt("ticket_price"))
                 .build();
         movieSession.setId(rs.getLong("ms.id"));
         return movieSession;

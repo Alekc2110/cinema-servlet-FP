@@ -91,13 +91,13 @@ public class Ticket extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return Objects.equals(movieSession, ticket.movieSession) &&
+        return super.getId().equals(((Ticket) o).getId()) && Objects.equals(movieSession, ticket.movieSession) &&
                 Objects.equals(row, ticket.row) &&
                 Objects.equals(seat, ticket.seat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(movieSession, row, seat);
+        return Objects.hash(super.getId(), movieSession, row, seat);
     }
 }

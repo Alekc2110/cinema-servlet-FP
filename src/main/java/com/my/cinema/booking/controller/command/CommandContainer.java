@@ -28,9 +28,9 @@ public class CommandContainer {
         commands.put(USER_ACCOUNT, new UserAccountCommand());
         commands.put(LOGIN, new LoginCommand());
         commands.put(LOGOUT, new LogOutCommand());
-        commands.put(ENTER_LOGIN, new EnterLoginCommand(new UserService(new SimplePasswordEncoder())));
+        commands.put(ENTER_LOGIN, new EnterLoginCommand(new UserService()));
         commands.put(REGISTER_USER, new RegisterUserCommand());
-        commands.put(REGISTER, new RegistrationCommand(new UserService(new SimplePasswordEncoder())));
+        commands.put(REGISTER, new RegistrationCommand(new UserService()));
         commands.put(SHOW_ALL_MOVIES, new ShowActiveMoviesCommand(new MovieService()));
         commands.put(SHOW_MOVIE_DETAIL, new ShowMovieDetailCommand(new MovieService()));
         commands.put(ADMIN_MANAGE_MOVIES, new ManageMoviesCommand(new MovieService()));

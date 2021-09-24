@@ -11,8 +11,6 @@ import java.util.Optional;
 
 public interface OrderDao extends AutoCloseable {
 
-    List<Order> findAllOrders();
-
     List<Seat> findAllBookedSeats(Long movieSesId);
 
     List<Seat> getAllSeats();

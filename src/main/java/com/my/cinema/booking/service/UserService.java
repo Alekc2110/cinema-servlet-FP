@@ -7,6 +7,7 @@ import com.my.cinema.booking.exceptions.EntityNotFoundException;
 import com.my.cinema.booking.exceptions.EntitySaveDaoException;
 import com.my.cinema.booking.model.entity.User;
 import com.my.cinema.booking.utils.PasswordEncoder;
+import com.my.cinema.booking.utils.SimplePasswordEncoder;
 import org.apache.log4j.Logger;
 
 import java.util.Optional;
@@ -18,15 +19,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-    public UserService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    public Optional<User> findUserById(Long id) {
-        try (UserDao dao = factory.createUserDao()) {
-            LOG.debug("get user by id");
-            return dao.getById(id);
-        }
+    public UserService() {
+        passwordEncoder = new SimplePasswordEncoder();
     }
 
     public boolean checkUserExists(String email, String password) {

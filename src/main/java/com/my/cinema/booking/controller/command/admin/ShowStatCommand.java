@@ -2,8 +2,6 @@ package com.my.cinema.booking.controller.command.admin;
 
 import com.my.cinema.booking.controller.command.Command;
 import com.my.cinema.booking.controller.command.Path;
-import com.my.cinema.booking.model.entity.MovieSession;
-import com.my.cinema.booking.service.MovieService;
 import com.my.cinema.booking.service.OrderService;
 import org.apache.log4j.Logger;
 
@@ -28,10 +26,13 @@ public class ShowStatCommand extends Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         LOG.info("showing hall fulfilling for admin");
-        LocalDate date = Date.valueOf(request.getParameter("date")).toLocalDate();
-        final int countBookedSeat = orderService.getCountBookedSeatByDate(date);
-        final float percentage =  countBookedSeat/(float)HALL_CAPACITY*PERCENTAGE_100;
-        request.setAttribute(PERCENTAGE_BOOKED_SEATS, String.format("%.0f", percentage));
+        final String dateParam = request.getParameter("date");
+        if(dateParam != null && !dateParam.isEmpty()){
+            LocalDate date = Date.valueOf(dateParam).toLocalDate();
+            final int countBookedSeat = orderService.getCountBookedSeatByDate(date);
+            final float percentage =  countBookedSeat/(float)HALL_CAPACITY*PERCENTAGE_100;
+            request.setAttribute(PERCENTAGE_BOOKED_SEATS, String.format("%.0f", percentage));
+        }
         return Path.PAGE_ADMIN_ACCOUNT;
     }
 }

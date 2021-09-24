@@ -56,12 +56,12 @@ public class Seat extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Seat seat = (Seat) o;
-        return rowId.equals(seat.rowId) &&
+        return super.getId().equals(((Seat) o).getId()) && rowId.equals(seat.rowId) &&
                 number == seat.number;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(rowId, number);
+        return Objects.hash(super.getId(), rowId, number);
     }
 }

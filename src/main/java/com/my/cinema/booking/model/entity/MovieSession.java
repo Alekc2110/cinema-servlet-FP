@@ -2,6 +2,7 @@ package com.my.cinema.booking.model.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 
 public class MovieSession extends Entity {
@@ -90,5 +91,21 @@ public class MovieSession extends Entity {
                 ", time=" + time +
                 ", ticketPrice=" + ticketPrice +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MovieSession)) return false;
+        MovieSession that = (MovieSession) o;
+        return super.getId().equals(((MovieSession) o).getId()) && ticketPrice == that.ticketPrice &&
+                Objects.equals(movieId, that.movieId) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(time, that.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.getId(), movieId, date, time, ticketPrice);
     }
 }

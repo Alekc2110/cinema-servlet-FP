@@ -5,6 +5,7 @@ public final class Queries {
     public static final String GET_USER_BY_ID = "SELECT * FROM `user` u JOIN `user_role` u_r ON u.id = u_r.user_id JOIN `role` r ON u_r.role_id = r.id  WHERE u.id = ?";
     public static final String SAVE_USER = "INSERT INTO `user` (name, password, email)  VALUES (?,?,?)";
     public static final String GET_ROLE_ID = "SELECT id FROM `role` WHERE role_name = ?";
+    public static final String GET_USER_BY_EMAIL = "SELECT * FROM `user` WHERE email = ?";
     public static final String SAVE_USER_ROLE = "INSERT INTO `user_role` (user_id, role_id)  VALUES (?,?)";
     public static final String GET_BY_EMAIL_PASSWORD = "SELECT * FROM `user` u JOIN `user_role` u_r ON u.id = u_r.user_id JOIN `role` r ON u_r.role_id = r.id WHERE u.email =? AND u.password = ?";
 

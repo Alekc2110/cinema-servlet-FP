@@ -14,10 +14,10 @@ public class MovieSessionMapper implements Mapper<MovieSession> {
     @Override
     public MovieSession getEntity(ResultSet resultSet) throws SQLException {
         MovieSession movieSession = new MovieSession.Builder()
-                .setMovieId(Long.parseLong(resultSet.getString("movie_id")))
+                .setMovieId(resultSet.getLong("movie_id"))
                 .setDate(resultSet.getDate("show_date").toLocalDate())
                 .setTime(resultSet.getTime("show_time").toLocalTime())
-                .setTicketPrice(Integer.parseInt(resultSet.getString("ticket_price")))
+                .setTicketPrice(resultSet.getInt("ticket_price"))
                 .build();
         movieSession.setId(resultSet.getLong("id"));
         return movieSession;
