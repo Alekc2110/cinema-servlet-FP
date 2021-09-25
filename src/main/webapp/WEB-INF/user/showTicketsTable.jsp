@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        <c:forEach items="${requestScope.ticketList}" var="ticket">
+        <c:forEach items="${requestScope.ticketList}" var="ticket" begin="0" end="${requestScope.recordPerPage -1}">
             <tr>
                 <td><c:out value="${ticket.movieSession.date}"/></td>
                 <td><c:out value="${ticket.movieSession.time}"/></td>
@@ -53,6 +53,17 @@
         </tbody>
     </table>
 </div>
+<nav aria-label="...">
+    <ul class="pagination pagination-sm justify-content-center">
+        <c:forEach var="pagNumber" begin="1" end="${requestScope.pageNumbers}">
+            <li class="page-item">
+                <a class="page-link"
+                   href="${pageContext.request.contextPath}/cinema/ticketsTable?pagination=${pagNumber}">
+                    <c:out value="${pagNumber}"/></a>
+            </li>
+        </c:forEach>
+    </ul>
+</nav>
 
 <script src="${pageContext.request.contextPath}/js/search.js"></script>
 <script src="${pageContext.request.contextPath}/js/orderSort.js"></script>

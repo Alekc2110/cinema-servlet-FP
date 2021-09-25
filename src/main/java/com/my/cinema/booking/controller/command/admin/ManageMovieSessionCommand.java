@@ -34,8 +34,7 @@ public class ManageMovieSessionCommand extends Command {
         } else {
             Object movieIdObj = request.getSession().getAttribute("movieId");
             if (movieIdObj != null) {
-                movieIdStr = String.valueOf(movieIdObj);
-                movieId = Long.valueOf(movieIdStr);
+                movieId = Long.parseLong(String.valueOf(movieIdObj));
                 List<MovieSession> movieSesList = movieService.findMovieSesByMovieId(movieId);
                 request.setAttribute(MOVIE_S_LIST_ATTRIBUTE, movieSesList);
                 request.setAttribute(MOVIE_ID, movieId);

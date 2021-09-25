@@ -53,7 +53,9 @@ public class OrderServiceTest {
     void findAllBookedSeatsTest() {
         Long movieSessionId = 5L;
         Seat one = new Seat(1L, 1);
+        one.setId(1L);
         Seat two = new Seat(2L, 2);
+        two.setId(2L);
         List<Seat> bookedSeats = Arrays.asList(one, two);
         when(orderDao.findAllBookedSeats(movieSessionId)).thenReturn(bookedSeats);
 
@@ -70,7 +72,9 @@ public class OrderServiceTest {
     @DisplayName("should return list of all seats")
     void getAllSeatsTest() {
         Seat one = new Seat(1L, 1);
+        one.setId(1L);
         Seat two = new Seat(2L, 2);
+        two.setId(2L);
         List<Seat> allSeats = Arrays.asList(one, two);
         when(orderDao.getAllSeats()).thenReturn(allSeats);
 

@@ -38,7 +38,7 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        <c:forEach items="${requestScope.movieList}" var="movie">
+        <c:forEach items="${requestScope.movieList}" var="movie" begin="0" end="${requestScope.recordPerPage -1}">
             <tr>
                 <td><c:out value="${movie.title}"/></td>
                 <td><c:out value="${movie.director}"/></td>
@@ -52,6 +52,17 @@
         </tbody>
     </table>
 </div>
+<nav aria-label="...">
+    <ul class="pagination pagination-sm justify-content-center">
+        <c:forEach var="pagNumber" begin="1" end="${requestScope.pageNumbers}">
+            <li class="page-item">
+                <a class="page-link"
+                   href="${pageContext.request.contextPath}/cinema/showMovieTable?pagination=${pagNumber}">
+                    <c:out value="${pagNumber}"/></a>
+            </li>
+        </c:forEach>
+    </ul>
+</nav>
 
 <script src="${pageContext.request.contextPath}/js/search.js"></script>
 <script src="${pageContext.request.contextPath}/js/orderSort.js"></script>
