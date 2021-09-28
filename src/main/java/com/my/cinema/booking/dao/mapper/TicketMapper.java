@@ -15,12 +15,14 @@ public class TicketMapper implements Mapper<Ticket> {
 
     @Override
     public Ticket getEntity(ResultSet resultSet) throws SQLException {
-        return new Ticket.Builder().
+        Ticket ticket =  new Ticket.Builder().
                 setMovieSession(getMovieSession(resultSet)).
                 setRow(getRow(resultSet)).
                 setSeat(getSeat(resultSet)).
                 setOrderId(resultSet.getLong("order_id")).
                 build();
+        ticket.setId(resultSet.getLong("t.id"));
+        return ticket;
     }
 
     private Row getRow(ResultSet rs) throws SQLException {

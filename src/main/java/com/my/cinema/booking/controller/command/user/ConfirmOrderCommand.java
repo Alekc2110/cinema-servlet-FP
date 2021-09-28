@@ -34,6 +34,7 @@ public class ConfirmOrderCommand extends Command {
         Long movieSesId = Long.parseLong(request.getParameter("movieSesId"));
         LOG.info("try to confirm order and save tickets");
         List<Ticket> ticketsBySession = ticketService.findTicketsBySession(movieSesId);
+        LOG.info("tickets list by session: "+ ticketsBySession);
         HttpSession session = request.getSession();
         Order order = (Order) session.getAttribute("order");
         if (ticketsBySession.size() > 0) {

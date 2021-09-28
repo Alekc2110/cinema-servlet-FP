@@ -41,7 +41,6 @@ public class Ticket extends Entity {
     }
 
     public static class Builder {
-
         private Long orderId;
         private MovieSession movieSession;
         private Row row;
@@ -78,8 +77,8 @@ public class Ticket extends Entity {
 
     @Override
     public String toString() {
-        return "Ticket{" +
-                "orderId=" + orderId +
+        return "Ticket{" + "ID: "+ super.getId() +
+                ",orderId=" + orderId +
                 ", movieSession=" + movieSession +
                 ", row=" + row +
                 ", seat=" + seat +
@@ -91,13 +90,13 @@ public class Ticket extends Entity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Ticket ticket = (Ticket) o;
-        return super.getId().equals(((Ticket) o).getId()) && Objects.equals(movieSession, ticket.movieSession) &&
+        return  Objects.equals(movieSession, ticket.movieSession) &&
                 Objects.equals(row, ticket.row) &&
                 Objects.equals(seat, ticket.seat);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.getId(), movieSession, row, seat);
+        return Objects.hash(movieSession, row, seat);
     }
 }
