@@ -1,6 +1,5 @@
 package com.my.cinema.booking.mapper;
 
-import com.my.cinema.booking.dao.mapper.SeatMapper;
 import com.my.cinema.booking.dao.mapper.TicketMapper;
 import com.my.cinema.booking.model.entity.MovieSession;
 import com.my.cinema.booking.model.entity.Row;
@@ -41,6 +40,7 @@ public class TicketMapperTest {
                 setMovieSession(movieSession).
                 setSeat(seat).
                 build();
+        expected.setId(1L);
 
         lenient().when(rs.getLong("order_id")).thenReturn(1L);
         lenient().when(rs.getLong("r.id")).thenReturn(5L);
@@ -53,6 +53,7 @@ public class TicketMapperTest {
         lenient().when(rs.getLong("s.row_id")).thenReturn(5L);
         lenient().when(rs.getInt("s.number")).thenReturn(5);
         lenient().when(rs.getLong("s.id")).thenReturn(1L);
+        lenient().when(rs.getLong("t.id")).thenReturn(1L);
 
         Ticket result = ticketMapper.getEntity(rs);
 
