@@ -5,7 +5,6 @@ import com.my.cinema.booking.model.enums.Status;
 import java.util.Objects;
 
 public class Seat extends Entity {
-
     private Long rowId;
     private int number;
     private Status status;

@@ -4,7 +4,6 @@ package com.my.cinema.booking.model.entity;
 import java.util.Objects;
 
 public class Row extends Entity {
-
     private int number;
 
     public Row() {

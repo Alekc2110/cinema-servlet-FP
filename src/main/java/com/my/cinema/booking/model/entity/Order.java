@@ -7,7 +7,6 @@ import java.util.List;
 
 
 public class Order extends Entity {
-
     private LocalDateTime orderTime;
     private Long userId;
     private int orderPrice;

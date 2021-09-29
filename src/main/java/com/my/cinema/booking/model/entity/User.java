@@ -3,7 +3,6 @@ package com.my.cinema.booking.model.entity;
 import com.my.cinema.booking.model.enums.Role;
 
 public class User extends Entity {
-
     private String name;
     private String password;
     private String email;
@@ -46,7 +45,6 @@ public class User extends Entity {
 
 
     public static class Builder {
-
         private String name;
         private String password;
         private String email;

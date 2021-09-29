@@ -6,7 +6,6 @@ import java.util.Objects;
 
 
 public class MovieSession extends Entity {
-
     private Long movieId;
     private LocalDate date;
     private LocalTime time;
@@ -45,7 +44,6 @@ public class MovieSession extends Entity {
     }
 
     public static class Builder {
-
         private Long movieId;
         private LocalDate date;
         private LocalTime time;

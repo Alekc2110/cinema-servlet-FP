@@ -3,7 +3,6 @@ package com.my.cinema.booking.model.entity;
 import java.util.List;
 
 public class Movie extends Entity {
-
     private String title;
     private String description;
     private String director;
@@ -69,7 +68,6 @@ public class Movie extends Entity {
     }
 
     public static class Builder {
-
         private String title;
         private String description;
         private String photoUrl;
