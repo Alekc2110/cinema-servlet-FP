@@ -7,7 +7,6 @@ import com.my.cinema.booking.service.MovieService;
 import com.my.cinema.booking.service.OrderService;
 import com.my.cinema.booking.service.TicketService;
 import com.my.cinema.booking.service.UserService;
-import com.my.cinema.booking.utils.SimplePasswordEncoder;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
@@ -44,7 +43,7 @@ public class CommandContainer {
         commands.put(MANAGE_ORDER, new ManageOrderCommand(new MovieService()));
         commands.put(ORDER_TICKETS, new OrderTicketsCommand(new MovieService(), new OrderService()));
         commands.put(ADD_ORDER, new AddOrderCommand(new OrderService(), new MovieService()));
-        commands.put(CONFIRM_ORDER, new ConfirmOrderCommand(new TicketService(), new OrderService()));
+        commands.put(CONFIRM_ORDER, new ConfirmOrderCommand(new TicketService(), new OrderService(), new MovieService()));
         commands.put(CANCEL_ORDER, new CancelOrderCommand(new OrderService()));
         commands.put(SHOW_MOVIE_TABLE, new ShowMoviesCommand(new MovieService()));
         commands.put(SHOW_TIMETABLE, new TimetableUserCommand(new MovieService()));

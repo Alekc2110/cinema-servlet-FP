@@ -13,12 +13,6 @@
     <header id="header">
         <jsp:include page="/WEB-INF/parts/header1.jsp"/>
         <div style="width: 100%;" class="container">
-            <c:if test="${param.bookedSeats == true}">
-                <p class="errorsM"><fmt:message key="order.booked.seats.true"/></p>
-            </c:if>
-            <c:if test="${param.orderFalse == true}">
-                <p class="errorsM"><fmt:message key="order.save.false"/></p>
-            </c:if>
             <h1 style="color: #a71d2a"><c:out value="${requestScope.movie.title}"/></h1>
             <h3><fmt:message key="show.movie.session.title"/>
                 <c:out value="${requestScope.movieSession.date}"/> --

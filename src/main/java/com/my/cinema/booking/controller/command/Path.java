@@ -23,7 +23,7 @@ public interface Path {
     String PAGE_SHOW_MOVIES_TABLE = "/WEB-INF/user/showMoviesTable.jsp";
     String PAGE_SHOW_TICKETS_TABLE = "/WEB-INF/user/showTicketsTable.jsp";
     String PAGE_SHOW_TIMETABLE = "/WEB-INF/user/timeTable.jsp";
-//    String PAGE__ERROR_PAGE = "/WEB-INF/error/errorPage.jsp";
+
 
     //commands
     String HOME = "/homePage";

@@ -21,7 +21,6 @@ public class AddOrderCommand extends Command {
     private static final String MOVIE_ATTR = "movie";
     private static final String MOVIE_SESSION_ATTR = "movieSession";
 
-
     private OrderService orderService;
     private MovieService movieService;
 

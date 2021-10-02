@@ -13,14 +13,20 @@
     <header id="header">
         <jsp:include page="/WEB-INF/parts/header1.jsp"/>
         <div style="width: 100%;" class="container">
-
             <img src="<c:out value="${requestScope.movie.photoUrl}"/>" alt="movie image url"
                  style="vertical-align: middle" width=600 height=600>
             <span style="vertical-align: middle; display: inline-block; width: 400px;">
+                 <c:if test="${param.bookedSeats == true}">
+                     <p class="errorsM"><fmt:message key="order.booked.seats.true"/></p>
+                 </c:if>
+            <c:if test="${param.orderFalse == true}">
+                <p class="errorsM"><fmt:message key="order.save.false"/></p>
+            </c:if>
                  <h3><fmt:message key="show.movie.session.table.title"/></h3>
                 <c:forEach items="${requestScope.movieSessionList}" var="movieSession">
                     <p>
-                        <a style="color: black" href="${pageContext.request.contextPath}/cinema/orderTickets?movieSesId=${movieSession.id}">
+                        <a style="color: black"
+                           href="${pageContext.request.contextPath}/cinema/orderTickets?movieSesId=${movieSession.id}">
                             <c:out value="${movieSession.date}"/> --
                             <c:out value="${movieSession.time}"/>
                             <fmt:message key="show.movie.session.price"/>
