@@ -34,7 +34,6 @@
                 </div>
             </div>
         </form>
-
     </div>
 
     <table id="movies" class="table table-bordered table-sm">

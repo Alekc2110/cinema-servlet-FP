@@ -25,7 +25,7 @@ public class ShowStatCommand extends Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        LOG.info("showing hall fulfilling for admin");
+        LOG.info("showing hall attendance for admin");
         final String dateParam = request.getParameter("date");
         if(dateParam != null && !dateParam.isEmpty()){
             LocalDate date = Date.valueOf(dateParam).toLocalDate();

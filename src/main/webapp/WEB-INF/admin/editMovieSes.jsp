@@ -22,7 +22,7 @@
                 <input
                         id="show_date"
                         name="show_date"
-                        type="text"
+                        type="date"
                         class="form-control input-md"
                         data-pattern-error="<fmt:message key='data.non-valid'/>"
                         data-required-error="<fmt:message key='data.required'/>"
@@ -39,7 +39,7 @@
                 <input
                         id="show_time"
                         name="show_time"
-                        type="text"
+                        type="time"
                         class="form-control input-md"
                         data-pattern-error="<fmt:message key='data.non-valid'/>"
                         data-required-error="<fmt:message key='data.required'/>"

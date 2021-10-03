@@ -47,7 +47,9 @@ public class ConfirmOrderCommand extends Command {
         Order order = (Order) session.getAttribute("order");
         if (order != null) {
             if (ticketsBySession.size() > 0) {
-                if (checkTicketsToBook(ticketsBySession, order)){
+               if (checkTicketsToBook(ticketsBySession, order)){
+                    orderService.deleteOrder(order.getId());
+                    session.removeAttribute("order");
                     request.setAttribute(ACTIVE_MOVIE, movie);
                     request.setAttribute(MOVIE_SES_LIST_ATTR, movieSessionList);
                     return Path.PAGE_ORDER_MOVIE_S + ALREADY_BOOKED_SEAT;
@@ -60,6 +62,10 @@ public class ConfirmOrderCommand extends Command {
                 if (ticketsSaved && savedBookedSeats)
                     return Path.PAGE_HOME;
             }
+        }
+        if(order!=null) {
+            orderService.deleteOrder(order.getId());
+            session.removeAttribute("order");
         }
         request.setAttribute(ACTIVE_MOVIE, movie);
         request.setAttribute(MOVIE_SES_LIST_ATTR, movieSessionList);
