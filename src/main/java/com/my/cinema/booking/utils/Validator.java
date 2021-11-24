@@ -1,12 +1,7 @@
 package com.my.cinema.booking.utils;
 
-import com.my.cinema.booking.controller.command.common.RegistrationCommand;
-import org.apache.log4j.Logger;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,11 +51,11 @@ public class Validator {
                 Pattern.compile(CORRECT_TIME);
         Matcher matcher = VALID_NAME_REG.matcher(time);
         boolean matches = matcher.matches();
-        if(matches){
+        if (matches) {
             try {
                 LocalTime.parse(time);
                 return true;
-            } catch (DateTimeParseException e){
+            } catch (DateTimeParseException e) {
                 return false;
             }
         }
@@ -72,11 +67,11 @@ public class Validator {
                 Pattern.compile(CORRECT_DATE);
         Matcher matcher = VALID_NAME_REG.matcher(date);
         boolean matches = matcher.matches();
-        if(matches){
+        if (matches) {
             try {
                 LocalDate.parse(date);
                 return true;
-            } catch (DateTimeParseException e){
+            } catch (DateTimeParseException e) {
                 return false;
             }
         }

@@ -74,6 +74,5 @@ public class ConfirmOrderCommand extends Command {
 
     private boolean checkTicketsToBook(List<Ticket> tickets, Order order) {
         return order.getTicketList().stream().anyMatch(tickets::contains);
-
     }
 }
