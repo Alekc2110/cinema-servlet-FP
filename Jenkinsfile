@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Print env veriables') {
             steps {
-                bash "printenv | sort"
+                bat "printenv | sort"
 
             }
         }
