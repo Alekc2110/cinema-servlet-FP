@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Print env veriables') {
             steps {
-                echo 'echo "Hello World"'
+                sh "printenv | sort"
 
             }
         }
