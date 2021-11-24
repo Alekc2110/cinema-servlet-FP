@@ -1,10 +1,12 @@
 pipeline {
     agent any
+    tools{
+        maven 'Maven'
+    }
     stages {
-        stage('Print env veriables') {
+        stage('Tests') {
             steps {
-                bat "printenv | sort"
-
+                bat "mvn test"
             }
         }
     }
