@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Tests') {
                steps {
-                   echo "running from Jenkinsfile"
+                   echo "running from jenkinsFile"
                 bat "mvn clean compile test"
             }
         }
