@@ -1,10 +1,12 @@
 pipeline {
     agent any
+    tools{
+        maven 'Maven'
+    }
     stages {
-        stage('Build') {
+        stage('Tests') {
             steps {
-                echo 'echo "Hello World"'
-
+                bat "mvn clean complile test"
             }
         }
     }
